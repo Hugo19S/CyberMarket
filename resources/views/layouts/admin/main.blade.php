@@ -4,50 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/bootstrap.css">
     <title>@yield('title')</title>
 </head>
 
 <body>
+    <div class="container">
 
-
-    <header>
-        <div class="panel-default">
-            <div class="panel-heading">
-                <div class="menu">
-                    <button id="menu-button">&#9776;</button>
+        <header>
+            <div class="panel-default">
+                <div class="panel-heading">
+                    <div class="menu" id="menu">
+                        <button id="menu-button">&#9776;</button>
+                    </div>
+                    <div class="head_items">
+                        <div class="head_login_info">
+                            <h2>Hugo</h2>
+                            <span class="icone-usuario"><i class="fa-regular fa-user"></i></span>
+                        </div>
+                        <div class="head_search">
+                            <form action="#" method="get">
+                                <input type="text" name="search" placeholder="&#128269 Pesquisar" class="input_search">
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </header>
+
+        <div class="mainfragment">
+            <div id="list-menu">
+                <ul class="option_container">
+                    <div>
+                        <li class="large_icon above">
+                            <a href="#">
+                                <img src="/sgv_admin/house.svg" alt="house icon">
+                            </a>
+                        </li>
+                        <li class="large_icon above">
+                            <a href="#">
+                                <img src="/sgv_admin/product-management.svg" alt="product management icon">
+                            </a>
+                        </li>
+                        <li class="large_icon above">
+                            <a href="#">
+                                <img src="/sgv_admin/order-management.svg" alt="order management icon">
+                            </a>
+                        </li>
+                        <li class="large_icon above">
+                            <a href="#">
+                                <img src="/sgv_admin/pie-chart.svg" alt="pie chart icon">
+                            </a>
+                        </li>
+                    </div>
+                    <div>
+                        <li class="large_icon" id="logout">
+                            <a href="#">
+
+                                <img src="/sgv_admin/logout.svg" alt="pie chart icon">
+                            </a>
+                        </li>
+                    </div>
+
+                </ul>
+            </div>
+
+            <div class="content" id="content">
+                @yield('content')
+            </div>
+
         </div>
 
-        <div id="list">
-            <ul class="options">
-                <li class="large_icon">
-                    <a href="#">
-                        <img src="/sgv_admin/house.svg" alt="house icon">
-                    </a>
-                </li>
-                <li class="large_icon">
-                    <a href="#">
-                        <img src="/sgv_admin/product-management.svg" alt="product management icon">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="/sgv_admin/order-management.svg" alt="order management icon">
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <script src="/js/script_layout.js"></script>
 
-    </header>
-
-    @yield('content')
-    <script src="/js/script_layout.js"></script>
+    </div>
 </body>
 
 </html>

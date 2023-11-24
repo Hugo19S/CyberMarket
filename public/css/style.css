@@ -1,39 +1,150 @@
+/* Css de layout */
 
-#menu-button{
-  height: 50px;
-  width: 50px;
-  font-size: 35px;
-  border: none;
-  margin-left: 10px;
-  background-color: transparent;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-.menu{
-  background-color: aqua;
-  width: 70px;
+body{
+    width: 100vw;
+    height: 100vh;
 }
 
-.panel-default .panel-heading{
-  margin: 0;
-  padding: 0;
+header {
+    width: 100vw;
+    height: 9vh;
 }
 
-#list {
-  display: none;
-  background-color: blueviolet;
-  width: 70px;
+.container {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
 }
 
-#list .options .large_icon{
-  margin: 0;
-  padding: 0;
+#menu-button {
+    height: 50px;
+    width: 50px;
+    font-size: 35px;
+    border: none;
+    background-color: transparent;
 }
 
-.options li{
-  list-style-type: none;
+#menu-button:hover {
+    background-color: rgb(0, 208, 255);
 }
 
-.large_icon{
-  width: 50px;
-  height: 50px;
+#menu-button.active:hover {
+    background-color: #a5a5a5;
 }
+
+.panel-default,
+.panel-heading {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    border: none;
+}
+
+.panel-default > .panel-heading {
+    background-color: #e0e0e0;
+    display: flex;
+}
+
+.menu {
+    box-sizing: border-box;
+    padding: 0;
+    height: 100%;
+    width: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9fc5f8;
+}
+
+.mainfragment {
+    height: 91vh;
+    width: 100vw;
+    display: flex;
+}
+
+#list-menu {
+    display: block;
+    background-color: #9fc5f8;
+    margin: 0;
+    padding: 0;
+    width: 5vw;
+    height: 100%;
+}
+
+.content {
+    box-sizing: border-box;
+    width: 95vw;
+    height: 100%;
+    padding: 30px 30px;
+    overflow: auto;
+}
+
+.options {
+    width: 100%;
+    height: 100%;
+}
+
+.option_container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+}
+.large_icon {
+    
+    width: 45px;
+    height: 45px;
+    margin: 10px 0px 10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.large_icon > a, 
+.large_icon > a > img{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.above{
+    margin-bottom: 25px;
+}
+
+.head_items{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    width: 95vw;
+    padding: 0px 60px;
+}
+
+.head_login_info, .head_search{
+    display: flex;
+    align-items: center;
+}
+
+.input_search{
+    width: 400px;
+    height: 35px;
+    border-radius: 15px;
+    padding: 0px 10px;
+}
+
+.icone-usuario{
+    margin-left: 10px;
+    font-size: 40px;
+}
+
+
+/* Css da pagina inicial */
