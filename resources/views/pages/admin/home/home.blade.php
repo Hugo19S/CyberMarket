@@ -9,19 +9,16 @@
     <div class="last_additions">
         <h3>Últimos 5 produtos adicionados</h3>
         <div class="additions">
-            @for ($i = 1; $i <= 5; $i++) <div class="productDetails">
-                <img src="/img/laptops.png" alt="">
-        </div>
-        @endfor
+            @for ($i = 1; $i <= 5; $i++) 
+            <x-product-box image="/img/laptops.png"/>
+            @endfor
     </div>
 </div>
 <div class="last_orders">
     <h3>Últimos 5 pedidos</h3>
     <div class="orders">
         @for ($i = 1; $i <= 5; $i++) 
-            <div class="productDetails">
-                <img src="/img/laptops.png" alt="">
-            </div>
+            <x-product-box image="/img/laptops.png"/>
         @endfor
 </div>
 </div>

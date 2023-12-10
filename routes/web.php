@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 /** Route Client */
-Route::get('/top/secret/home',[AdminController::class, 'index']);
+//Route::get('/home/admin',[AdminController::class, 'index']);
 
 
 /** Route Admin */
-//Route::get('/home/admin',[AdminController::class, 'index']);
+
+Route::get('/top/secret/home',[AdminController::class, 'index']);
+Route::get('/top/secret/product/register',[AdminController::class, 'register']);
+Route::post('/top/secret/product/register/store',[AdminController::class, 'store']);
+Route::get('/top/secret/login',[AdminController::class, 'login']);
+Route::post('/top/secret/login/verify',[AdminController::class, 'verify']);
