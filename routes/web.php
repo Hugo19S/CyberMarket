@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 /** Route Client */
-Route::get('/top/secret/home',[AdminController::class, 'index']);
+//Route::get('/top/secret/home',[AdminController::class, 'index']);
 
 
 /** Route Admin */
-//Route::get('/home/admin',[AdminController::class, 'index']);
+Route::get('/home/admin',[AdminController::class, 'index']);
