@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TipoProduto extends Model
 {
-    protected $fillable = ['categoria_id', 'nome_tipo_produto'];
+    protected $fillable = ['categoria_id', 'nome_tipo_produto', 'created_at', 'updated_at'];
     protected $primaryKey = 'tipo_produto_id';
     protected $table = 'tipo_produto';
+    public $timestamps = true;
+
+
     use HasFactory;
 
 
