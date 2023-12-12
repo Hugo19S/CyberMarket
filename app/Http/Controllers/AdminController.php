@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use \Illuminate\Contracts\View\View;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -11,16 +11,19 @@ class AdminController extends Controller
         return view('pages.admin.home.home');
     }
 
-    function login() {
+    function login(): View {
         return view('pages.admin.login.login');
     }
 
     function verify() {
-        return redirect('/top/secret/login')->with('msg', 'Login inválido, tente novamente!');
+        return redirect('/secret/login')->with('msg', 'Login inválido, tente novamente!');
     }
 
-    function register() {
-        return view('pages.admin.register.register');
+    function addProduct(): View {
+        return view('pages.admin.addProduct.add');
+    }
+    function editProduct(): View {
+        return view('pages.admin.editProduct.edit');
     }
 
     function store(Request $request) {
@@ -46,8 +49,15 @@ class AdminController extends Controller
         }
 
         $produto->save();
+        return redirect('/secret/home');
+    }
 
-        return redirect('/top/secret/home');
-
+    public function showProduct(): View
+    {
+        return view('pages.admin.managementProduct.product');
+    }
+    function showOrder(): View
+    {
+        return view('pages.admin.managementOrder.order');
     }
 }

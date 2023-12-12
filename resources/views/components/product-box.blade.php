@@ -1,7 +1,17 @@
+@props([
+    'image',
+    'first_button',
+    'second_button',
+    'text_btn1',
+    'text_btn2',
+    'btn1_href',
+    'btn2_href'
+])
+
 <div class="productDetails">
     <div class="contentRelative" onclick="window.location.href='/top/secret/login';">
         <div class="imagDiv">
-            <img src="{{$image}}" alt="">
+            <img src="{{$image}}" alt="product image">
         </div>
         <div class="productInfos">
             <div class="price">€549,99</div>
@@ -25,8 +35,8 @@
     </div>
     <div class="containerButtons">
         <div class="buttonsOrg">
-            <a href="#" class="btn btn-primary">Editar</a>
-            <a href="#" class="btn btn-danger">Eliminar</a>
+            <a href="{{ $btn1_href }}" class="{{$first_button}}">{{ $text_btn1 }}</a>
+            <a href="{{ $btn2_href }}" class="{{$second_button}}">{{ $text_btn2 }}</a>
         </div>
     </div>
 </div>

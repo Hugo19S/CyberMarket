@@ -38,17 +38,17 @@
                 <ul class="option_container">
                     <div>
                         <li class="large_icon above">
-                            <a href="#">
+                            <a href="/secret/home">
                                 <img src="/sgv_admin/house.svg" alt="house icon">
                             </a>
                         </li>
                         <li class="large_icon above">
-                            <a href="#">
+                            <a href="/secret/management/products">
                                 <img src="/sgv_admin/product-management.svg" alt="product management icon">
                             </a>
                         </li>
                         <li class="large_icon above">
-                            <a href="#">
+                            <a href="/secret/management/order">
                                 <img src="/sgv_admin/order-management.svg" alt="order management icon">
                             </a>
                         </li>

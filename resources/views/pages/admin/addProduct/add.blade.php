@@ -1,10 +1,8 @@
 @extends('layouts.admin.main')
 
-@section('title', 'Register')
+@section('title', 'Add Product')
 
 @section('content')
-
-$categorias = 
 
 <div class="productRegister">
     <div id="register" class="col-md-6 offset-md-3">
@@ -14,7 +12,7 @@ $categorias =
             <div class="form-group">
                 <label for="categoria">Categoria</label><br />
                 <select name="categoria" class="form-control">
-                    @for($i = 0; $i < 10 ; $i++) 
+                    @for($i = 0; $i < 10 ; $i++)
                         <option value="opcao{{$i}}">
                             categoria {{$i}}
                         </option>
@@ -25,7 +23,7 @@ $categorias =
             <div class="form-group">
                 <label for="tipo_de_produto">Tipo de produto</label><br />
                 <select name="tipo_de_produto" class="form-control">
-                    @for($i = 0; $i < 10 ; $i++) 
+                    @for($i = 0; $i < 10 ; $i++)
                         <option value="opcao{{$i}}">
                             Tipo de produto {{$i}}
                         </option>
@@ -34,7 +32,7 @@ $categorias =
             </div>
             <div class="form-group">
                 <label for="name">Nome do produto</label><br />
-                <input type="text" id="name" name="name" class="form-control">
+                <input type="text" id="name" name="name" class="form-control" >
             </div>
             <div class="form-group">
                 <label for="sku">Sku</label><br />
@@ -43,7 +41,7 @@ $categorias =
             <div class="form-group">
                 <label for="fabricante">Fabricante</label><br />
                 <select name="fabricante" class="form-control">
-                    @for($i = 0; $i < 10 ; $i++) 
+                    @for($i = 0; $i < 10 ; $i++)
                         <option value="opcao{{$i}}">
                             Fabricante {{$i}}
                         </option>
