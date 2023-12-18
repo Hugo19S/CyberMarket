@@ -52,12 +52,20 @@ class AdminController extends Controller
         return redirect('/secret/home');
     }
 
-    public function showProduct(): View
+    public function showProducts(): View
     {
-        return view('pages.admin.managementProduct.product');
+        return view('pages.admin.managementProduct.products');
+    }
+    public function showProduct($id): View
+    {
+        return view('pages.admin.managementProduct.detailsProduct');
     }
     function showOrder(): View
     {
         return view('pages.admin.managementOrder.order');
     }
+    function orderDetails($id): View
+        {
+            return view('pages.admin.managementOrder.details');
+        }
 }

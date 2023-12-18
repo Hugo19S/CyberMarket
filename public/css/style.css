@@ -212,7 +212,8 @@ body,
 
 .last_orders,
 .last_additions,
-.management
+.management,
+.orderDetailsPage
 {
     margin-bottom: 30px;
 }
@@ -351,9 +352,7 @@ body,
     gap: 20px;
 }
 
-.last_additions > h1{
-    margin-top: 0;
-}
+.last_additions h1{ margin-top: 0; }
 
 .management .productDetails {
     /*grid-row: span 2;*/ /* Ajuste conforme necessário */
@@ -364,3 +363,139 @@ body,
     margin-bottom: 15px;
     box-shadow: 8px 5px 5px rgb(70, 69, 69);
 }
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+.table th{
+    font-size:17px;
+    color: #8d8d8d;
+}
+
+.table .destaque, .table .geral{
+    font-weight: bold;
+    font-size: 15px;
+
+}
+.table .geral{ color: #8d8d8d; }
+
+.table .status{
+    border: 1px solid #0d8dc5;
+    border-radius: 15px;
+    background-color: #d3efff;
+    height: 23px;
+    width: 90px;
+    text-align: center;
+}
+
+.orderDetailsPage{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.containerOrder{
+    display: flex;
+    gap: 2rem;
+}
+
+.orderDetails{
+    box-sizing: border-box;
+    border: 1px solid #b7b7b7;
+    flex: 7 1 0;
+    padding: 20px;
+    & h3{
+        margin: 0 0 8px 0;
+    }
+}
+
+.publish{
+
+    border: 1px solid #b7b7b7;
+    flex: 1 1 0;
+    height: 130px;
+    & h4{ margin: 0; }
+    .h4{
+        margin: 0;
+        border-bottom: 1px solid #b7b7b7;
+        padding: 8px;
+    }
+
+    .buttons{ padding: 8px; }
+
+    .btn{ width: 100%; }
+
+    .btn-success{ margin-bottom: 8px; }
+
+}
+
+.dataGeneral{
+    width: 100%;
+    display: flex;
+    gap: 4rem;
+}
+
+.dataGeneral h4{ font-weight: bold }
+
+.orderData, .deliveryAddress{
+    flex: 1 1 0;
+}
+
+.deliveryAddress label{
+    margin-bottom: 12px;
+}
+
+.selectedProduct{
+    box-sizing: border-box;
+    border: 1px solid #b7b7b7;
+    padding: 20px;
+
+    .span{
+        max-width: 280px;
+    }
+}
+
+.containerProductDetails{
+    width: 100%;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 2rem;
+    padding: 20px 40px 20px 40px;
+}
+
+.headerProduct{
+    text-align: center;
+}
+
+.headerProduct h3{
+    margin: 0;
+}
+
+.compartment1{
+    display: flex;
+    gap: 3rem;
+}
+
+.compartmentImage{
+    border: 1px solid;
+    flex: 1 1 0;
+}
+
+.compartmentImage img{
+
+    width: 100%;
+}
+
+.compartmentData{
+    border: 1px solid;
+    flex: 1 1 0;
+}
+
+.compartment2{
+
+}
+
