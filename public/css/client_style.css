@@ -1,0 +1,227 @@
+footer {
+    background: #9FC5F8;
+    margin-top: auto
+}
+
+html {
+    min-height: 100%;
+    margin: 0;
+    background: whitesmoke;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: whitesmoke;
+}
+
+/*************************************************************Categories*************************************************************/
+
+.categorias-wraper {
+    padding: 15px;
+    background-color: whitesmoke;
+}
+
+@media (max-width: 760px) {
+    .container-categorias {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .container-categorias a {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        padding: 10px 30px;
+
+    }
+}
+
+
+.container-categorias a img {
+    border-radius: 50%;
+    border: #9FC5F8 solid 2px;
+    width: 90%;
+}
+
+.container-categorias {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 30px 0;
+    background: white;
+    width: 100%;
+}
+
+.container-categorias a {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.container-categorias a:hover {
+    font-weight: bold;
+}
+
+.custom-border {
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 15px;
+}
+
+.second-div-product-detail {
+    height: fit-content;
+}
+
+/************************************************************* End Categories**********************************************************/
+
+/*************************************************************** Swiper ***************************************************************/
+
+.swiper-main-container {
+    padding: 15px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/************************************************************* End Swiper ************************************************************/
+
+/************************************************************* Footer ****************************************************************/
+
+.secondary-container-footer {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.footer-display-divs {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+/************************************************************* End Footer ***********************************************************************/
+
+/************************************************************* SideBar **************************************************************************/
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background: #9FC5F8;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 20px;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/************************************************************* End SideBar **************************************************************************/
+
+/**************************************************** custom flex orders ************************************************************************/
+.search-custom-width {
+    width: 600px;
+    order: 3;
+}
+
+.login-cart-custom-order {
+    order: 4;
+}
+
+/*breakpoints*/
+
+@media (max-width: 960px) {
+    .search-custom-width {
+        width: 100%;
+        order: 4;
+    }
+
+    .login-cart-custom-order {
+        order: 3;
+    }
+
+    .sidebar {
+
+        width: 50%;
+    }
+
+}
+
+
+/**************************************************** End Custom flex orders ************************************************************************/
+
+
+.product-list-main-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*product details*/
+
+.custom-margins {
+    margin-right: 20px;
+}
+
+@media (max-width: 760px) {
+    .custom-margins {
+        margin: 0 0 20px 0;
+    }
+
+}
+
+
+.quantity-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+
+

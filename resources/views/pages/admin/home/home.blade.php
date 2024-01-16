@@ -42,7 +42,7 @@
     <h3>Analise de visita as páginas</h3>
     <div class="analytics">
         {{-- <div class="orderDetails">
-            <img src="/img/laptops.png" alt="">
+            <images src="/images/laptops.png" alt="">
         </div>
         --}}
 

@@ -1,17 +1,39 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Models\Categoria;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
-class PedidoProdutoController extends Controller
+class HomePageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+
+    }
+
+    public function getCategorias()
+    {
+        $categorias = Categoria::all();
+        return response()->json(['categorias' => $categorias]);
+    }
+
+    public function getProdutos()
+    {
+        $produtos = Produto::all();
+        return response()->json(['produtos' => $produtos]);
+    }
+
+    public function getProdutosComImagens()
+    {
+        $produtosComImagens = Produto::with('imagens')->get();
+
+        return response()->json(['produtosComImagens' => $produtosComImagens]);
     }
 
     /**

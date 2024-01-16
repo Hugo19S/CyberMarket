@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
-use \Illuminate\Contracts\View\View;
+namespace App\Http\Controllers\Web;
+use App\Http\Controllers\Controller;
 use App\Models\Produto;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -44,7 +45,7 @@ class AdminController extends Controller
             $requestImage = $request->image;
             $extension = $requestImage->extension();
             $imageName = md5($requestImage->getClientOriginalName().strtotime("now")). "." . $extension;
-            $requestImage->move(public_path('img/products'), $imageName);
+            $requestImage->move(public_path('images/products'), $imageName);
             $produto->image = $imageName;
         }
 

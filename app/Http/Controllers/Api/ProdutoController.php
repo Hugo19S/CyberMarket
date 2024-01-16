@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
-class ImagemController extends Controller
+class ProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+
     }
 
     /**
