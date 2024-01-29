@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin_style.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <title>Login page</title>
 </head>
@@ -13,7 +13,7 @@
     <div class="contentLogin">
         <div class="loginPage">
             <div class="logotype">
-                <img src="/img/cybermarket_logo.png" alt="">
+                <img src="/images/cybermarket_logo.png" alt="">
                 <h2>CyberMarket</h2>
             </div>
             <div class="mainBox">

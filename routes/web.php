@@ -28,5 +28,8 @@ Route::get('/secret/product/edit/{id}', [AdminController::class, 'editProduct'])
 Route::post('/secret/product/addProduct/store', [AdminController::class, 'store']);
 Route::get('/secret/login', [AdminController::class, 'login']);
 Route::post('/secret/login/verify', [AdminController::class, 'verify']);
-Route::get('/secret/management/products', [AdminController::class, 'showProduct']);
-Route::get('/secret/management/order', [AdminController::class, 'showOrder']);
+Route::get('/secret/management/analytics', [AdminController::class, 'showAnalytics']); /**Responsive*/
+Route::get('/secret/management/products', [AdminController::class, 'showProducts']);
+Route::get('/secret/management/product/details/{id}', [AdminController::class, 'showProduct']); /**Responsive*/
+Route::get('/secret/management/order', [AdminController::class, 'showOrder']); /**Responsive*/
+Route::get('/secret/management/order/{id}', [AdminController::class, 'orderDetails']);

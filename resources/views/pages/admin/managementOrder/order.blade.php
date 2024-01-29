@@ -5,13 +5,13 @@
 @section('content')
 
     <div>
-        <div class="last_additions">
+        <div class="content-data">
             <h1>Gestão de Compras</h1>
 
             <table class="table">
                 <thead>
                 <tr>
-                    <th>ID da encomenda</th>
+                    <th>ID do pedido</th>
                     <th>Data</th>
                     <th>Proprietário</th>
                     <th>Status</th>
@@ -24,22 +24,20 @@
                 <tbody>
                 @for ($i = 1; $i <= 50; $i++)
                     <tr class="row_order_table">
-                        <td class="destaque"><a href="/secret/management/order/2">#67226</a></td>
-                        <td class="geral">24/10/2023</td>
-                        <td class="geral">Hana Milne</td>
-                        <td >
+                        <td class="destaque" data-title="ID do pedido"><a href="/secret/management/order/2">#67226</a></td>
+                        <td class="geral" data-title="Data">24/10/2023</td>
+                        <td class="geral" data-title="Proprietário">Hana Milne</td>
+                        <td data-title="Status">
                             <div  class="status">
                                 <p>Completo</p>
                             </div>
-
                         </td>
-                        <td class="geral">2</td>
-                        <td class="geral">Cartão visa</td>
-                        <td class="destaque">€50.99</td>
+                        <td class="geral" data-title="Itens">2</td>
+                        <td class="geral" data-title="Pagamento">Cartão visa</td>
+                        <td class="destaque" data-title="Total">€50.99</td>
                     </tr>
                 @endfor
                 </tbody>
-
             </table>
 
         </div>

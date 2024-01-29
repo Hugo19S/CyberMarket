@@ -9,7 +9,7 @@
 ])
 
 <div class="productDetails">
-    <div class="contentRelative" onclick="window.location.href='/top/secret/login';">
+    <div class="contentRelative" onclick="window.location.href='/secret/management/product/details/1';">
         <div class="imagDiv">
             <img src="{{$image}}" alt="product image">
         </div>

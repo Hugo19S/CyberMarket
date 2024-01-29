@@ -71,7 +71,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Imagem</label><br />
-                    <input type="file" id="image" name="image" accept="image/*" class="form-control-file">
+                    <input type="file" id="image" name="image" accept="image/*" class="form-control-file" multiple>
                 </div>
                 <input type="submit" class="btn btn-success" value="Adicionar">
             </form>

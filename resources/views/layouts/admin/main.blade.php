@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin_style.css">
     <title>@yield('title')</title>
 </head>
 
@@ -39,30 +39,29 @@
                     <div>
                         <li class="large_icon above">
                             <a href="/secret/home">
-                                <img src="/sgv_admin/house.svg" alt="house icon">
+                                <img src="/sgv_admin/house.svg" alt="house icon" title="Home">
                             </a>
                         </li>
                         <li class="large_icon above">
                             <a href="/secret/management/products">
-                                <img src="/sgv_admin/product-management.svg" alt="product management icon">
+                                <img src="/sgv_admin/product-management.svg" alt="product management icon" title="Produtos">
                             </a>
                         </li>
                         <li class="large_icon above">
                             <a href="/secret/management/order">
-                                <img src="/sgv_admin/order-management.svg" alt="order management icon">
+                                <img src="/sgv_admin/order-management.svg" alt="order management icon" title="Compras">
                             </a>
                         </li>
                         <li class="large_icon above">
-                            <a href="#">
-                                <img src="/sgv_admin/pie-chart.svg" alt="pie chart icon">
+                            <a href="/secret/management/analytics">
+                                <img src="/sgv_admin/pie-chart.svg" alt="pie chart icon" title="Analise">
                             </a>
                         </li>
                     </div>
                     <div>
                         <li class="large_icon" id="logout">
                             <a href="#">
-
-                                <img src="/sgv_admin/logout.svg" alt="pie chart icon">
+                                <img src="/sgv_admin/logout.svg" alt="pie chart icon" title="Sair">
                             </a>
                         </li>
                     </div>

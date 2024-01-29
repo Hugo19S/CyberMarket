@@ -80,7 +80,7 @@
                             <td class="destaque">515</td>
                             <td class="geral"><a href="#">
                                     <div class="span">
-                                        <a href="/secret/management/product/1">
+                                        <a href="/secret/management/product/details/1">
                                             Lenovo Newest Flagship Chromebook, 14''
                                             FHD Lenovo Newest Flagship Chromebook
                                         </a>
