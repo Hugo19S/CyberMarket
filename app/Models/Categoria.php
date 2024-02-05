@@ -17,4 +17,9 @@ class Categoria extends Model
 
     public $timestamps = true;
     use HasFactory;
+
+    public function tipoProduto()
+    {
+        return $this->hasMany(TipoProduto::class, 'categoria_id', 'categoria_id');
+    }
 }

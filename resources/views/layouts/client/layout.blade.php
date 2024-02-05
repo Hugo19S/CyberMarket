@@ -99,13 +99,20 @@
                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
                         dark:focus:border-blue-500"
                        placeholder="O que está á procura?">
+
+                <!-- Adicione um evento de submit ao formulário -->
+                <form id="search-form" action="{{ route('product.search') }}" method="GET" class="hidden">
+                    <input type="hidden" id="search-query" name="q" value="">
+                </form>
+
             </div>
         </div>
 
         {{-- LOGIN + CARRINHO --}}
         <div class="login-cart-custom-order flex items-center space-x-3">
             <a href="#" class="text-gray-900"><i class="fa-solid fa-user"></i></a>
-            <a href="#" class="text-gray-900"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="{{ route('shopping.cart') }}" class="text-gray-900"><i class="fa-solid fa-cart-shopping"></i>
+                <span class="badge text-bg-danger">{{ count((array) session('cart')) }}</span></a>
         </div>
 
     </div>
@@ -140,24 +147,35 @@
     <div class="hidden w-full p-[5px]" id="navbar-hamburger">
         <ul class="flex flex-col font-medium mt-4 rounded-lg bg-[#6E8DC9] dark:border-gray-700">
             <li>
-                <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded dark:bg-blue-600" aria-current="page">Monitores</a>
+                <a href="{{--{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}--}}"
+                   class="block py-2 px-3 text-white bg-blue-700 rounded dark:bg-blue-600"
+                   aria-current="page">Monitores</a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{--{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}--}}"
                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
                    dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Impressoras</a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{--{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}--}}"
                    class="block py-2 px-3 text-gray-900 rounded
                    hover:bg-gray-100 dark:text-gray-400 md:dark:hover:text-white
                    dark:hover:bg-gray-700 dark:hover:text-white">Desktops</a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{--{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}--}}"
                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
                    dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Laptops</a>
             </li>
+
+            {{--@foreach ($categorias['categorias'] as $categoria)
+                <li>
+                    <a href="{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}"
+                       class="block py-2 px-3 text-gray-900 rounded
+                   hover:bg-gray-100 dark:text-gray-400 md:dark:hover:text-white
+                   dark:hover:bg-gray-700 dark:hover:text-white">{{$categoria['nome_categoria']}}</a>
+                </li>
+            @endforeach--}}
         </ul>
     </div>
 
@@ -247,6 +265,18 @@
 <script> sideBar() </script>
 <script> swiper()</script>
 
+<script>
+    document.getElementById('search-navbar').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            var query = document.getElementById('search-navbar').value;
+            document.getElementById('search-query').value = query;
+            document.getElementById('search-form').submit();
+        }
+    });
+</script>
+
+@yield('scripts')
 </body>
 
 </html>

@@ -64,24 +64,16 @@
             </button>
         </div>
 
-
         <div class="categorias-wraper w-full">
             <div class="container-categorias custom-border">
-                {{--<a href="#">
-                    <images src="images/categories/Monitores.png" alt=""/>
-                    <div style="text-align: center;">Monitores</div>
-                </a>--}}
-
                 @foreach ($categorias['categorias'] as $categoria)
-                    <a href="#">
+                    <a href="{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}">
                         <img src="images/categories/{{ $categoria['nome_categoria'] }}.png" alt=""/>
                         <div style="text-align: center;">{{ $categoria['nome_categoria'] }}</div>
                     </a>
                 @endforeach
-
             </div>
         </div>
-
 
         <div class="swiper-main-container">
             <div class="swiper mySwiper">
@@ -91,7 +83,6 @@
                             <x-product-card :produto="$produtoComImagem"/>
                         </div>
                     @endforeach
-
 
 
                 </div>

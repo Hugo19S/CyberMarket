@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TipoProduto extends Model
 {
@@ -16,10 +15,9 @@ class TipoProduto extends Model
 
     use HasFactory;
 
-
-    public function categoria(): BelongsTo
+    public function categoria()
     {
-        return $this->belongsTo(Categoria::class, 'categoria_id');
+        return $this->belongsTo(Categoria::class, 'categoria_id', 'categoria_id');
     }
 
 }

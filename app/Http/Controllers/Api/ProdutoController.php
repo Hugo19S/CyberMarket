@@ -11,6 +11,16 @@ class ProdutoController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function search(Request $request)
+    {
+        $termoPesquisa = $request->input('q');
+
+        $resultados = Produto::with('imagens')->where('nome_produto', 'like', '%' . $termoPesquisa . '%')->get();
+
+        return response()->json(['resultados' => $resultados]);
+    }
+
     public function index()
     {
 
@@ -37,7 +47,14 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+        $produto = Produto::with('imagens')->find($id);
+
+        if ($produto) {
+            return response()->json(['produto' => $produto]);
+        } else {
+            return redirect()->route('pagina-de-erro');
+        }
     }
 
     /**

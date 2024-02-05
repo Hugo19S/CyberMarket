@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\CategoriaController;
 use App\Http\Controllers\Api\HomePageController;
+use App\Http\Controllers\Api\ProdutoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,8 +18,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/categorias', [HomePageController::class, 'getCategorias']);
+
+
 Route::get('/produtos', [HomePageController::class, 'getProdutos']);
 Route::get('/produtos-com-imagens', [HomePageController::class, 'getProdutosComImagens']);
+Route::get('/produtos/{id}', [ProdutoController::class, 'show']);
+Route::get('/produto/search', [ProdutoController::class, 'search'])->name('api.produto.search');
+Route::get('/categoria/{categoriaId}/produtos', [CategoriaController::class, 'produtosPorCategoria'])
+    ->name('categoria.produtos');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

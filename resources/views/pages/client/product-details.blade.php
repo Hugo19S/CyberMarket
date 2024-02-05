@@ -8,22 +8,15 @@
                 {{-- DIV 1 --}}
                 <div class="bg-white custom-margins custom-border md:flex-1 px-4">
                     <div class="h-auto sm:h-auto rounded-lg bg-white dark:bg-white mb-4">
-                        <img class="w-full h-auto object-cover" src="{{ asset('images/products/p1.jpg') }}"
+                        <img class="w-full h-auto object-cover"
+                             src="{{ asset( $produto['produto']['imagens'][0]['imagem_url']) }}"
                              alt="Product Image">
                     </div>
 
                     <div>
                         <span class="font-bold text-black-700 dark:text-black-300">Descrição do Produto:</span>
                         <p class="text-black-600 dark:text-black-300 text-sm mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                            sed ante justo. Integer euismod libero id mauris malesuada tincidunt. Vivamus commodo nulla
-                            ut
-                            lorem rhoncus aliquet. Duis dapibus augue vel ipsum pretium, et venenatis sem blandit.
-                            Quisque
-                            ut erat vitae nisi ultrices placerat non eget velit. Integer ornare mi sed ipsum lacinia,
-                            non
-                            sagittis mauris blandit. Morbi fermentum libero vel nisl suscipit, nec tincidunt mi
-                            consectetur.
+                            {{$produto['produto']['descricao']}}
                         </p>
                     </div>
                 </div>
@@ -33,13 +26,12 @@
                 <div class="second-div-product-detail custom-border md:flex-1 px-4 bg-white">
                     <h2 class="text-2xl font-bold text-gray-800 dark:text-black mb-2">Nome do Produto</h2>
                     <p class="text-black-600 dark:text-black-300 text-sm mb-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
-                        ante justo. Integer euismod libero id mauris malesuada tincidunt.
+                        {{$produto['produto']['nome_produto']}}
                     </p>
                     <div class="flex mb-4">
                         <div class="mr-4">
                             <span class="font-bold text-black-700 dark:text-black-300">Preço:</span>
-                            <span class="text-black-600 dark:text-black-300">29.99€</span>
+                            <span class="text-black-600 dark:text-black-300">{{$produto['produto']['preco']}}€</span>
 
                         </div>
 
@@ -47,7 +39,7 @@
                     <div class="flex mb-4">
                         <div class="mr-4">
                             <span class="font-bold text-black-700 dark:text-black-300">Referência:</span>
-                            <span class="text-black-600 dark:text-black-300">ZSGH12456</span>
+                            <span class="text-black-600 dark:text-black-300">{{$produto['produto']['sku']}};</span>
 
                         </div>
                     </div>
@@ -61,7 +53,7 @@
                     <div class="flex mb-4">
                         <div class="mr-4">
                             <span class="font-bold text-black-700 dark:text-black-300">Vendido Por:</span>
-                            <span class="text-black-600 dark:text-black-300">Cybermarket</span>
+                            <span class="text-black-600 dark:text-black-300">{{$produto['produto']['vendedor']}};</span>
 
                         </div>
                     </div>
@@ -102,13 +94,15 @@
 
                             <div class="">
 
-                                <button
+                                {{--<button
                                     class="w-full bg-green-900-900 dark:bg-green-600
                                     text-white py-2 px-4 rounded-full font-bold
                                     hover:bg-gray-800 dark:hover:bg-gray-700"
                                     onclick="updateCartIcon()">
                                     Adicionar ao carrinho
-                                </button>
+                                </button>--}}
+                                <p class="btn-holder"><a href="{{ route('addproduct.to.cart', $produto['produto']['produto_id']) }}"
+                                                         class="btn btn-outline-danger">Add to cart</a></p>
 
                             </div>
 

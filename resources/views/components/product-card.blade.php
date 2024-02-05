@@ -1,5 +1,5 @@
 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow p-1.5">
-    <a href="#">
+    <a href="/produtos/{{$produto['produto_id']}}">
         <img class="p-8 rounded-t-lg" src="{{ asset($produto['imagens'][0]['imagem_url']) }}" alt="product image"/>
     </a>
 

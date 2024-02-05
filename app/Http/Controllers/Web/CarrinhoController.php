@@ -10,6 +10,35 @@ class CarrinhoController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function verCarrinho()
+    {
+        $carrinhoItens = [];
+        return view('pages.client.checkout', ['carrinhoItens' => $carrinhoItens]);
+    }
+
+    public function procederParaPagamento()
+    {
+        return view('pages.client.metodo-pagamento');
+    }
+
+    public function adicionarProdutoAoCarrinho($produtoId)
+    {
+        // Obtenha o carrinho atual ou crie um novo
+        $carrinho = json_decode(request()->cookie('carrinho', '[]'), true);
+
+        // Adicione o produto ao carrinho
+        // (aqui você precisa implementar sua própria lógica)
+        $produto = ['id' => $produtoId, 'quantidade' => 1];
+        $carrinho[] = $produto;
+
+        // Armazene o carrinho atualizado no cookie
+        return response()
+            ->view('sua.view', ['carrinho' => $carrinho])
+            ->cookie('carrinho', json_encode($carrinho), 60 * 24 * 7); // 7 dias de expiração
+    }
+
+
     public function index()
     {
         //
