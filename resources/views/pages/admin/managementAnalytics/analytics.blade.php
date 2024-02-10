@@ -8,7 +8,7 @@
         //variavel usado pelo arquivo js para criar os graficos
         let dataFromContr = {!! json_encode($dataFromController) !!};
     </script>
-    <script type="text/javascript" src="/js/pieChart.js"></script>
+    <script type="text/javascript" src="/js/admin/pieChart.js"></script>
 
     <div class="analytics">
         <h1>Analise de acesso as páginas</h1>

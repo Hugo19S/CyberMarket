@@ -10,13 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Produto extends Model
 {
 
-    protected $fillable = ['tipo_produto_id', 'fabricante_id', 'nome', 'sku',
+    protected $fillable = ['tipo_produto_id', 'fabricante_id', 'admin_id', 'nome', 'sku',
         'descricao', 'preco', 'vendedor', 'quantidade', 'data_criacao', 'modelo', 'created_at', 'updated_at'];
     protected $primaryKey = 'produto_id';
     protected $table = 'produto';
 
     public $timestamps = true;
-
 
     use HasFactory;
 

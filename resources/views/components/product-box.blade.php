@@ -5,10 +5,11 @@
     'text_btn1',
     'text_btn2',
     'btn1_href',
-    'btn2_href'
+    'btn2_href',
+    'classDef'
 ])
 
-<div class="productDetails">
+<div class="productDetails {{$classDef}}">
     <div class="contentRelative" onclick="window.location.href='/secret/management/product/details/1';">
         <div class="imagDiv">
             <img src="{{$image}}" alt="product image">

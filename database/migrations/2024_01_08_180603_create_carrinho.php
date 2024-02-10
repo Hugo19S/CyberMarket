@@ -17,11 +17,11 @@ return new class extends Migration {
             $table->integer('quantidade');
             $table->foreign('produto_id')
                 ->references('produto_id')
-                ->on('produtos')
+                ->on('produto')
                 ->onDelete('cascade');
             $table->foreign('cliente_id')
                 ->references('cliente_id')
-                ->on('users')
+                ->on('cliente')
                 ->onDelete('set null');
             $table->timestamps();
         });

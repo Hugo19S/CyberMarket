@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id("produto_id");
             $table->unsignedBigInteger("tipo_produto_id");
             $table->unsignedBigInteger("fabricante_id");
+            $table->unsignedBigInteger("admin_id");
             $table->string("nome_produto");
             $table->string("sku");
             $table->string("descricao");

@@ -16,6 +16,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 2,
                 'fabricante_id' => 1,
+                'admin_id' => 1,
                 'nome_produto' => 'Desktop Gamer Extreme',
                 'sku' => 'SKU123',
                 'descricao' => 'Potente desktop para jogos de última geração',
@@ -28,6 +29,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 2,
                 'fabricante_id' => 2,
+                'admin_id' => 1,
                 'nome_produto' => 'Desktop para Uso Doméstico',
                 'sku' => 'SKU456',
                 'descricao' => 'Desktop ideal para uso diário em casa',
@@ -40,6 +42,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 1,
                 'fabricante_id' => 3,
+                'admin_id' => 1,
                 'nome_produto' => 'Notebook Profissional Lenovo',
                 'sku' => 'SKU789',
                 'descricao' => 'Notebook potente para uso profissional',
@@ -52,6 +55,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 3,
                 'fabricante_id' => 4,
+                'admin_id' => 1,
                 'nome_produto' => 'Desktop Design Gráfico Dell',
                 'sku' => 'SKU101',
                 'descricao' => 'Desktop otimizado para design gráfico',
@@ -64,6 +68,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 4,
                 'fabricante_id' => 5,
+                'admin_id' => 1,
                 'nome_produto' => 'Desktop Econômico Acer',
                 'sku' => 'SKU202',
                 'descricao' => 'Desktop acessível para uso diário',
@@ -76,6 +81,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 6,
                 'fabricante_id' => 6,
+                'admin_id' => 2,
                 'nome_produto' => 'Notebook Conversível Asus',
                 'sku' => 'SKU303',
                 'descricao' => 'Notebook versátil com tela conversível',
@@ -88,6 +94,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 7,
                 'fabricante_id' => 7,
+                'admin_id' => 2,
                 'nome_produto' => 'Impressora Laser Monocromática Toshiba',
                 'sku' => 'SKU404',
                 'descricao' => 'Impressora monocromática de alta qualidade',
@@ -100,6 +107,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 9,
                 'fabricante_id' => 8,
+                'admin_id' => 2,
                 'nome_produto' => 'Impressora Multifuncional Wi-Fi Microsoft',
                 'sku' => 'SKU505',
                 'descricao' => 'Impressora multifuncional com conectividade sem fio',
@@ -112,6 +120,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 13,
                 'fabricante_id' => 9,
+                'admin_id' => 2,
                 'nome_produto' => 'Monitor LED Full HD Fujitsu',
                 'sku' => 'SKU606',
                 'descricao' => 'Monitor de alta definição para experiência visual excepcional',
@@ -124,6 +133,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 14,
                 'fabricante_id' => 10,
+                'admin_id' => 2,
                 'nome_produto' => 'Monitor Ultrawide Curvo Samsung',
                 'sku' => 'SKU707',
                 'descricao' => 'Monitor ultrawide com design curvo para imersão total',
@@ -136,6 +146,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 5,
                 'fabricante_id' => 11,
+                'admin_id' => 2,
                 'nome_produto' => 'Notebook Leve Sony',
                 'sku' => 'SKU808',
                 'descricao' => 'Notebook leve e portátil da Sony',
@@ -148,6 +159,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 6,
                 'fabricante_id' => 12,
+                'admin_id' => 3,
                 'nome_produto' => 'Notebook Conversível LG',
                 'sku' => 'SKU909',
                 'descricao' => 'Notebook conversível da LG com design inovador',
@@ -160,6 +172,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 8,
                 'fabricante_id' => 13,
+                'admin_id' => 3,
                 'nome_produto' => 'Impressora Jato de Tinta LG',
                 'sku' => 'SKU1010',
                 'descricao' => 'Impressora jato de tinta colorida da LG',
@@ -172,6 +185,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 10,
                 'fabricante_id' => 14,
+                'admin_id' => 3,
                 'nome_produto' => 'Impressora de Etiquetas Gigabyte',
                 'sku' => 'SKU1111',
                 'descricao' => 'Impressora de etiquetas para negócios da Gigabyte',
@@ -184,6 +198,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 11,
                 'fabricante_id' => 15,
+                'admin_id' => 3,
                 'nome_produto' => 'Monitor 4K Xiaomi',
                 'sku' => 'SKU1212',
                 'descricao' => 'Monitor 4K para edição de vídeo da Xiaomi',
@@ -196,6 +211,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 12,
                 'fabricante_id' => 1,
+                'admin_id' => 3,
                 'nome_produto' => 'Monitor Curvo Lenovo',
                 'sku' => 'SKU1313',
                 'descricao' => 'Monitor curvo para jogos da Lenovo',
@@ -208,6 +224,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 13,
                 'fabricante_id' => 2,
+                'admin_id' => 3,
                 'nome_produto' => 'Monitor Ultrawide HP Inc.',
                 'sku' => 'SKU1414',
                 'descricao' => 'Monitor ultrawide para produtividade da HP Inc.',
@@ -220,6 +237,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 14,
                 'fabricante_id' => 3,
+                'admin_id' => 3,
                 'nome_produto' => 'Monitor Gaming Dell',
                 'sku' => 'SKU1515',
                 'descricao' => 'Monitor curvo para jogos da Dell',
@@ -232,6 +250,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 1,
                 'fabricante_id' => 4,
+                'admin_id' => 3,
                 'nome_produto' => 'Notebook Apple Pro',
                 'sku' => 'SKU1616',
                 'descricao' => 'Notebook profissional da Apple',
@@ -244,6 +263,7 @@ class ProdutoSeeder extends Seeder
             [
                 'tipo_produto_id' => 3,
                 'fabricante_id' => 5,
+                'admin_id' => 3,
                 'nome_produto' => 'Desktop para Design Gráfico Acer',
                 'sku' => 'SKU1717',
                 'descricao' => 'Desktop otimizado para design gráfico da Acer',

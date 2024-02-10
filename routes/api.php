@@ -31,6 +31,3 @@ Route::get('/categoria/{categoriaId}/produtos', [CategoriaController::class, 'pr
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-

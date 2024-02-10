@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Carrinho extends Model
 
@@ -15,12 +16,12 @@ class Carrinho extends Model
 
     use HasFactory;
 
-    public function produto()
+    public function produto(): BelongsTo
     {
         return $this->belongsTo(Produto::class, 'produto_id');
     }
 
-    public function cliente()
+    public function cliente(): BelongsTo
     {
         return $this->belongsTo(Cliente::class, 'cliente_id');
     }

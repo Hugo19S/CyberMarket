@@ -19,6 +19,7 @@
                         text_btn2="Eliminar"
                         btn1_href="/secret/product/edit/1"
                         btn2_href="#"
+                        classDef="box-product"
                     />
                 @endfor
             </div>
