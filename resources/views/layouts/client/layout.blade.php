@@ -110,10 +110,17 @@
 
         {{-- LOGIN + CARRINHO --}}
         <div class="login-cart-custom-order flex items-center space-x-3">
-            <a href="#" class="text-gray-900"><i class="fa-solid fa-user"></i></a>
+            @if (Auth::check())
+                <a href="{{ route('detalhes.conta') }}" class="text-gray-900"><i class="fa-solid fa-user"></i></a>
+            @else
+                <a href="/login" class="text-gray-900"><i class="fa-solid fa-user"></i></a>
+            @endif
             <a href="{{ route('shopping.cart') }}" class="text-gray-900"><i class="fa-solid fa-cart-shopping"></i>
                 <span class="badge text-bg-danger">{{ count((array) session('cart')) }}</span></a>
+
         </div>
+
+
 
     </div>
     {{-- END MAIN CONTAINER NAVBAR --}}

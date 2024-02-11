@@ -10,6 +10,27 @@ class ClienteController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function register()
+    {
+        return view('pages.client.register');
+    }
+
+    public function login()
+    {
+        return view('pages.client.login');
+    }
+
+    public function detalhesConta()
+    {
+
+        return view('pages.client.user-details');
+
+    }
+
+
+
+
     public function index()
     {
 

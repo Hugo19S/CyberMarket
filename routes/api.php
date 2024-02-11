@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoriaController;
 use App\Http\Controllers\Api\HomePageController;
 use App\Http\Controllers\Api\ProdutoController;
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::post('login', [AuthController::class, 'signin'])->name('api.login');
+Route::post('register', [AuthController::class, 'signup'])->name('api.register');
 
 Route::get('/categorias', [HomePageController::class, 'getCategorias']);
 

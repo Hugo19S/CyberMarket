@@ -1,6 +1,11 @@
 <?php
 
-use App\Http\Controllers\Web\{AdminController, CategoriaController, HomePageController, ProdutoController};
+use App\Http\Controllers\Web\{AdminController,
+    CategoriaController,
+    ClienteController,
+    HomePageController,
+    ProdutoController};
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +20,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 /** Routes Client */
-Route::get('/', [HomePageController::class, 'index']);
+Route::get('/register',[ClienteController::class,'register'])->name('register');
+Route::get('/login',[ClienteController::class,'login'])->name('login');
+
+Route::get('/', [HomePageController::class, 'index'])->name('home'); // Defina a rota raiz e atribua o nome 'home'
 Route::get('/produtos/pesquisar', [ProdutoController::class, 'search'])->name('product.search');
 Route::get('/categoria/{id}/produtos', [CategoriaController::class, 'produtosPorCategoria'])->name('categories.search');
 Route::get('/produtos/{id}', [ProdutoController::class, 'show']);
-Route::get('/carrinho', [ProdutoController::class, 'productCart'])->name('shopping.cart');
+Route::middleware('web')->get('/carrinho', [ProdutoController::class, 'productCart'])->name('shopping.cart');
+Route::get('/detalhes-conta', [ClienteController::class, 'detalhesConta'])->middleware('auth');
 Route::get('/produtos/add/{id}', [ProdutoController::class, 'addProductToCart'])->name('addproduct.to.cart');
 Route::patch('/update-shopping-cart', [ProdutoController::class, 'updateCart'])->name('update.sopping.cart');
 Route::delete('/delete-cart-product', [ProdutoController::class, 'deleteProduct'])->name('delete.cart.product');
