@@ -14,6 +14,13 @@ class ProdutoController extends Controller
      */
 
 
+    public function checkout()
+    {
+
+        return view('pages.client.checkout');
+
+    }
+
     public function search(Request $request)
     {
         $termoPesquisa = $request->input('q');

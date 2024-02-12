@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -50,10 +51,26 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function atualizarCliente(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'numero_contribuinte' => 'required',
+            'morada' => 'required',
+            'telemovel' => 'required',
+        ]);
+
+        $cliente = Cliente::findOrFail($id);
+
+        $cliente->update([
+            'nif' => $request->input('numero_contribuinte'),
+            'morada' => $request->input('morada'),
+            'telemovel' => $request->input('telemovel'),
+        ]);
+
+        return response()->json(['message' => 'Cliente atualizado com sucesso'], 200);
     }
+
 
     /**
      * Remove the specified resource from storage.

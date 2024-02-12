@@ -98,19 +98,12 @@
                         </div>
                         <a class="inline-block w-full px-6 py-4 text-lg font-medium leading-6 tracking-tighter text-center text-white
                             bg-cyan-500 lg:w-auto hover:bg-cyan-600 focus:ring-2 focus:ring-cyan-500 focus:ring-opacity-50 rounded-xl"
-                           href="#">Checkout</a>
+                           href="/checkout">Checkout</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    {{-- <script>
-         function prosseguirParaPagamento() {
-             // Adicione a lógica para redirecionar para a página de pagamento
-             window.location.href = "{{ route('metodo-pagamento') }}";
-         }
-     </script>--}}
 @endsection
 
 @section('scripts')

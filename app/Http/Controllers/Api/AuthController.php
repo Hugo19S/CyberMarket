@@ -45,7 +45,6 @@ class AuthController extends BaseController
             return $this->sendError('Error validation', $validator->errors());
         }
 
-
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $input['tipo_utilizador_id'] = 1;
@@ -59,16 +58,13 @@ class AuthController extends BaseController
         ]);
 
         $cliente->save();
-
         return redirect()->route('home');
     }
 
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
-
         Auth::guard('web')->logout();
-
         return redirect()->route('home');
     }
 

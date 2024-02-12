@@ -12,7 +12,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        return view('pages.client.pedido');
+        return view('pages.client.order-summary');
     }
 
     /**

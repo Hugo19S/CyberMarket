@@ -127,20 +127,30 @@
             @endif
 
             @auth
-                {{session('name')}}
+                {{ session('name') }}
             @endauth
-
 
             @auth
-                <a href="/cliente/{{session('id')}}" class="text-gray-900"><i
-                        class="fa-solid fa-user"></i></a>
+                <a href="/cliente/{{ session('id') }}" class="text-gray-900 relative">
+                    <i class="fa-solid fa-user"></i>
+                </a>
             @else
-                <a href="/login" class="text-gray-900"><i class="fa-solid fa-user"></i></a>
+                <a href="/login" class="text-gray-900 relative">
+                    <i class="fa-solid fa-user"></i>
+                </a>
             @endauth
 
-            <a href="{{ route('shopping.cart') }}" class="text-gray-900"><i class="fa-solid fa-cart-shopping"></i>
-                <span class="badge text-bg-danger">{{ count((array) session('cart')) }}</span></a>
-
+            <a href="{{ route('shopping.cart') }}" class="text-gray-900 relative">
+                <i class="fa-solid fa-cart-shopping"></i>
+                @auth
+                    <span
+                        class="badge text-bg-danger absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2">
+                        @if(count((array) session('cart')) > 0)
+                            {{ count((array) session('cart')) }}
+                        @endif
+                    </span>
+                @endauth
+            </a>
         </div>
 
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class ClienteController extends Controller
 {
@@ -25,30 +26,34 @@ class ClienteController extends Controller
 
     public function detalhesConta()
     {
-
         $user = Auth::user();
         $userId = $user->id;
 
         $cliente = Cliente::where('user_id', $userId)->first();
 
-
-        return view('pages.client.user-details',['cliente' => $cliente]);
-
+        return view('pages.client.user-details', ['cliente' => $cliente]);
     }
 
-    public function update(Request $request, $id)
+    public function atualizar(Request $request, $id)
     {
-        $validatedData = $request->validate([
+
+        $request->validate([
             'numero_contribuinte' => 'required',
             'morada' => 'required',
             'telemovel' => 'required',
         ]);
 
-        $cliente = Cliente::findOrFail($id);
+        $response = Http::put('http://127.0.0.1:8000/api/cliente/' . $id, [
+            'numero_contribuinte' => $request->input('numero_contribuinte'),
+            'morada' => $request->input('morada'),
+            'telemovel' => $request->input('telemovel'),
+        ]);
 
-        $cliente->update($validatedData);
-
-        return redirect()->back()->with('success', 'Detalhes da conta atualizados com sucesso.');
+        if ($response->successful()) {
+            return redirect()->route('cliente.detalhes', ['id' => session('id')])->with('success', 'Cliente atualizado com sucesso');
+        } else {
+            return back()->withInput()->with('error', 'Erro ao atualizar o cliente');
+        }
     }
 
 

@@ -4,8 +4,8 @@ use App\Http\Controllers\Web\{AdminController,
     CategoriaController,
     ClienteController,
     HomePageController,
+    PedidoController,
     ProdutoController};
-use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 /** Routes Client */
-Route::get('/register',[ClienteController::class,'register'])->name('register');
-Route::get('/login',[ClienteController::class,'login'])->name('login');
+Route::get('/register', [ClienteController::class, 'register'])->name('register');
+Route::get('/login', [ClienteController::class, 'login'])->name('login');
 
 Route::get('/', [HomePageController::class, 'index'])->name('home'); // Defina a rota raiz e atribua o nome 'home'
 Route::get('/produtos/pesquisar', [ProdutoController::class, 'search'])->name('product.search');
@@ -29,14 +29,15 @@ Route::get('/categoria/{id}/produtos', [CategoriaController::class, 'produtosPor
 Route::get('/produtos/{id}', [ProdutoController::class, 'show']);
 
 
-Route::get('/produtos/add/{id}', [ProdutoController::class, 'addProductToCart'])->name('addproduct.to.cart');
-Route::patch('/update-shopping-cart', [ProdutoController::class, 'updateCart'])->name('update.sopping.cart');
-Route::delete('/delete-cart-product', [ProdutoController::class, 'deleteProduct'])->name('delete.cart.product');
-
 Route::middleware(['web', 'auth'])->group(function () {
-    Route::get('/cliente/{id}', [ClienteController::class, 'detalhesConta']);
+    Route::get('/produtos/add/{id}', [ProdutoController::class, 'addProductToCart'])->name('addproduct.to.cart');
+    Route::patch('/update-shopping-cart', [ProdutoController::class, 'updateCart'])->name('update.sopping.cart');
+    Route::delete('/delete-cart-product', [ProdutoController::class, 'deleteProduct'])->name('delete.cart.product');
+    Route::get('/cliente/{id}', [ClienteController::class, 'detalhesConta'])->name('cliente.detalhes');
     Route::get('/carrinho', [ProdutoController::class, 'productCart'])->name('shopping.cart');
-    Route::put('/cliente/{id}', [ClienteController::class, 'update'])->name('cliente.update');
+    Route::put('/cliente/{id}', [ClienteController::class, 'atualizar'])->name('cliente.atualizar');
+    Route::get('/checkout', [ProdutoController::class, 'checkout'])->name('checkout');
+    Route::get(('/pedido'),[PedidoController::class,'index'])->name('cliente.pedido');
 });
 
 
