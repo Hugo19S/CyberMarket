@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
@@ -24,11 +26,30 @@ class ClienteController extends Controller
     public function detalhesConta()
     {
 
-        return view('pages.client.user-details');
+        $user = Auth::user();
+        $userId = $user->id;
+
+        $cliente = Cliente::where('user_id', $userId)->first();
+
+
+        return view('pages.client.user-details',['cliente' => $cliente]);
 
     }
 
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'numero_contribuinte' => 'required',
+            'morada' => 'required',
+            'telemovel' => 'required',
+        ]);
 
+        $cliente = Cliente::findOrFail($id);
+
+        $cliente->update($validatedData);
+
+        return redirect()->back()->with('success', 'Detalhes da conta atualizados com sucesso.');
+    }
 
 
     public function index()
@@ -71,10 +92,6 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

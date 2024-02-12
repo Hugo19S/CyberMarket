@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
 Route::post('login', [AuthController::class, 'signin'])->name('api.login');
 Route::post('register', [AuthController::class, 'signup'])->name('api.register');
 
@@ -31,7 +36,4 @@ Route::get('/produto/search', [ProdutoController::class, 'search'])->name('api.p
 Route::get('/categoria/{categoriaId}/produtos', [CategoriaController::class, 'produtosPorCategoria'])
     ->name('categoria.produtos');
 
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->post('/logout',[AuthController::class, 'logout'])->name('api.logout');

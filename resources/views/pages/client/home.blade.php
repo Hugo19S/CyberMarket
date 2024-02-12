@@ -4,9 +4,7 @@
 
     <div class="home-main-container">
 
-        <p>Token: {{ session('token') }}</p>
-        <p>Nome do Usuário: {{ session('user_name') }}</p>
-        <p>teste: {{ session('ok') }}</p>
+
 
         <div id="indicators-carousel" class="relative w-full" data-carousel="static">
             <!-- Carousel wrapper -->

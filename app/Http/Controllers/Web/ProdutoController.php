@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class ProdutoController extends Controller
@@ -26,6 +27,7 @@ class ProdutoController extends Controller
 
     public function productCart()
     {
+
         return view('pages.client.cart');
     }
 

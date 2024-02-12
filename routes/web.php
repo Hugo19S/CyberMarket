@@ -27,19 +27,22 @@ Route::get('/', [HomePageController::class, 'index'])->name('home'); // Defina a
 Route::get('/produtos/pesquisar', [ProdutoController::class, 'search'])->name('product.search');
 Route::get('/categoria/{id}/produtos', [CategoriaController::class, 'produtosPorCategoria'])->name('categories.search');
 Route::get('/produtos/{id}', [ProdutoController::class, 'show']);
-Route::middleware('web')->get('/carrinho', [ProdutoController::class, 'productCart'])->name('shopping.cart');
-Route::get('/detalhes-conta', [ClienteController::class, 'detalhesConta'])->middleware('auth');
+
+
 Route::get('/produtos/add/{id}', [ProdutoController::class, 'addProductToCart'])->name('addproduct.to.cart');
 Route::patch('/update-shopping-cart', [ProdutoController::class, 'updateCart'])->name('update.sopping.cart');
 Route::delete('/delete-cart-product', [ProdutoController::class, 'deleteProduct'])->name('delete.cart.product');
 
-/*Route::get('/produtos/pedido',[PedidoController::class,'index']);
-Route::get('/carrinho',[CarrinhoController::class,'verCarrinho']);
-Route::get('/metodo-pagamento', [CarrinhoController::class, 'procederParaPagamento'])->name('metodo-pagamento');*/
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::get('/cliente/{id}', [ClienteController::class, 'detalhesConta']);
+    Route::get('/carrinho', [ProdutoController::class, 'productCart'])->name('shopping.cart');
+    Route::put('/cliente/{id}', [ClienteController::class, 'update'])->name('cliente.update');
+});
 
 
 /** Routes Admin */
-Route::get('/secret/home', [AdminController::class, 'index']);
+
+Route::get('/secret/home', [AdminController::class, 'index'])->name('home.home');
 Route::get('/secret/product/add', [AdminController::class, 'addProduct']);
 Route::get('/secret/product/edit/{id}', [AdminController::class, 'editProduct']);
 Route::post('/secret/product/addProduct/store', [AdminController::class, 'store']);

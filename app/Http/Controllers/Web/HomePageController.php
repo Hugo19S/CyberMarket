@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class HomePageController extends Controller
@@ -11,6 +12,7 @@ class HomePageController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
         $categoriasResponse = Http::get('http://127.0.0.1:8000/api/categorias');
@@ -21,6 +23,7 @@ class HomePageController extends Controller
 
         $produtosComImagemResponse = Http::get('http://127.0.0.1:8000/api/produtos-com-imagens');
         $produtosComImagem = $produtosComImagemResponse->json();
+        ;
 
         return view('pages.client.home', ['categorias' => $categorias,
             'produtos' => $produtos, 'produtosComImagem' => $produtosComImagem]);

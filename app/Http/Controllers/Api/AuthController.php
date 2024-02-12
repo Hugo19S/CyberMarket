@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Models\Cliente;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -18,12 +17,15 @@ class AuthController extends BaseController
             $authUser = Auth::user();
             $success['token'] = $authUser->createToken('MyAuthApp')->plainTextToken;
 
-
+            session(['id' => $authUser->id]);
+            session(['name' => $authUser->name]);
+            session(['email' => $authUser->email]);
             session(['token' => $success['token']]);
-            session(['user_name' => $authUser->name]);
-            session(['ok' => 'ok']);
+
+            session()->save();
 
             return redirect()->route('home');
+
         } else {
             return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
         }
@@ -57,6 +59,15 @@ class AuthController extends BaseController
         ]);
 
         $cliente->save();
+
+        return redirect()->route('home');
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        Auth::guard('web')->logout();
 
         return redirect()->route('home');
     }

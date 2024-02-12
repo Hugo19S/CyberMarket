@@ -110,16 +110,38 @@
 
         {{-- LOGIN + CARRINHO --}}
         <div class="login-cart-custom-order flex items-center space-x-3">
-            @if (Auth::check())
-                <a href="{{ route('detalhes.conta') }}" class="text-gray-900"><i class="fa-solid fa-user"></i></a>
+
+            @if(Auth::check())
+                <form action="{{ route('api.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="text-gray-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20"
+                             fill="currentColor">
+                            <path fill-rule="evenodd"
+                                  d="M3 10a7 7 0 1 1 14 0 7 7 0 0 1-14 0zm7-6a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm1 9v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 2 0z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+                        Logout
+                    </button>
+                </form>
+            @endif
+
+            @auth
+                {{session('name')}}
+            @endauth
+
+
+            @auth
+                <a href="/cliente/{{session('id')}}" class="text-gray-900"><i
+                        class="fa-solid fa-user"></i></a>
             @else
                 <a href="/login" class="text-gray-900"><i class="fa-solid fa-user"></i></a>
-            @endif
+            @endauth
+
             <a href="{{ route('shopping.cart') }}" class="text-gray-900"><i class="fa-solid fa-cart-shopping"></i>
                 <span class="badge text-bg-danger">{{ count((array) session('cart')) }}</span></a>
 
         </div>
-
 
 
     </div>
