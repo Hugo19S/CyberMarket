@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends BaseController
@@ -63,9 +64,10 @@ class AuthController extends BaseController
 
     public function logout(Request $request)
     {
+        Session::forget('cart');
         $request->user()->tokens()->delete();
         Auth::guard('web')->logout();
-        return redirect()->route('home');
-    }
 
+ return redirect()->route('home');
+    }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pedido extends Model
 {
+    protected $connection = 'mysql';
     protected $fillable = ['cliente_id', 'data_pedido', 'preco_total', 'status'];
     protected $primaryKey = 'pedido_id';
     protected $table = 'pedido';

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <section class="flex items-center py-16{{-- bg-gray-50--}} font-poppins ">
+    <section class="flex items-center py-16 font-poppins ">
         <div
             class="justify-center flex-1 max-w-4xl px-6 py-6 mx-auto bg-gray-100 rounded-md shadow-md dark:border-gray-900
             lg:py-10 lg:px-10 bg-white">

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,10 +14,7 @@ return new class extends Migration
             $table->id("pagamento_id");
             $table->unsignedBigInteger("tipo_pagamento_id");
             $table->unsignedBigInteger("pedido_id");
-            $table->string("descricao");
             $table->dateTime("data_pagamento");
-            $table->integer("quantidade");
-            $table->string("status_pagamento");
             $table->foreign('tipo_pagamento_id')
                 ->references('tipo_pagamento_id')
                 ->on('tipo_pagamento')
@@ -29,7 +25,6 @@ return new class extends Migration
                 ->on('pedido')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

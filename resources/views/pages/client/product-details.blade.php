@@ -92,20 +92,27 @@
 
                             </div>
 
-                            <div class="">
+                            @auth
+                                <div class="">
 
-                                {{--<button
-                                    class="w-full bg-green-900-900 dark:bg-green-600
-                                    text-white py-2 px-4 rounded-full font-bold
-                                    hover:bg-gray-800 dark:hover:bg-gray-700"
-                                    onclick="updateCartIcon()">
-                                    Adicionar ao carrinho
-                                </button>--}}
-                                <p class="btn-holder"><a href="{{ route('addproduct.to.cart', $produto['produto']['produto_id']) }}"
-                                                         class="btn btn-outline-danger">Add to cart</a></p>
+                                    <p class="btn-holder">
+                                        <a href="{{ route('addproduct.to.cart', $produto['produto']['produto_id']) }}"
+                                           class="inline-block bg-green-500 text-white py-1 px-3 rounded-full hover:bg-green-600 transition-colors">
+                                            <i class="fas fa-cart-plus mr-1"></i> Adicionar
+                                        </a>
+                                    </p>
 
-                            </div>
-
+                                </div>
+                            @else
+                                <div class="">
+                                    <p class="btn-holder">
+                                        <a href="/login"
+                                           class="inline-block bg-green-500 text-white py-1 px-3 rounded-full hover:bg-green-600 transition-colors">
+                                            <i class="fas fa-cart-plus mr-1"></i> Adicionar
+                                        </a>
+                                    </p>
+                                </div>
+                            @endauth
 
                         </div>
                     </div>

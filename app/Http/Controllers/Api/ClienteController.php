@@ -5,15 +5,19 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+
+
     public function index()
     {
-        return view('layouts.layout');
+
     }
 
     /**

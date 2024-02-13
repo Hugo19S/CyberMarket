@@ -11,7 +11,7 @@
                     {{--BEGIN PRODUCT DIV--}}
 
                     @php $total = 0 @endphp
-                    @if(session('cart'))
+                    @if(count((array) session('cart')) > 0)
                         @foreach(session('cart') as $id => $details)
                             <div class="custom-border bg-white relative flex flex-wrap items-center pb-4 mb-4 -mx-4
                                   dark:border-gray-700 xl:justify-between border-opacity-40"
@@ -98,7 +98,8 @@
                         </div>
                         <a class="inline-block w-full px-6 py-4 text-lg font-medium leading-6 tracking-tighter text-center text-white
                             bg-cyan-500 lg:w-auto hover:bg-cyan-600 focus:ring-2 focus:ring-cyan-500 focus:ring-opacity-50 rounded-xl"
-                           href="/checkout">Checkout</a>
+                           href="/checkout" onclick="return checkCartItems()">Checkout</a>
+
                     </div>
                 </div>
             </div>
@@ -109,6 +110,27 @@
 @section('scripts')
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript">
+        function checkCartItems() {
+            if ({{$total}} > 0) {
+                return true;
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Carrinho Vazio',
+                    text: 'O seu carrinho está vazio! Adicione itens ao carrinho antes de prosseguir para o checkout.',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                });
+                return false;
+            }
+        }
+    </script>
+
     <script type="text/javascript">
 
         $(".edit-cart-info").change(function (e) {

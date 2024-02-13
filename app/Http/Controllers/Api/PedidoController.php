@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
+use App\Models\Pagamento;
+use App\Models\Pedido;
+use App\Models\PedidoProduto;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -10,6 +14,45 @@ class PedidoController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function processCheckout(Request $request)
+    {
+        $formData = $request->input('formData');
+        $cartData = $request->input('cartData');
+
+        $userId = $request->id;
+
+        $clientId = Cliente::where('user_id', $userId)->first();
+
+
+        $precoTotal = $request->input('total');
+
+        $pedido = Pedido::create([
+            'cliente_id' => $clientId->cliente_id,
+            'data_pedido' => now(),
+            'preco_total' => $precoTotal,
+            'status' => 'Em processamento',
+        ]);
+
+        $pedido->save();
+
+        foreach ($cartData as $item) {
+            PedidoProduto::create([
+                'pedido_id' => $pedido->pedido_id,
+                'produto_id' => $item['product_id'],
+                'quantidade' => $item['quantity'],
+            ]);
+        }
+
+        Pagamento::create([
+            'tipo_pagamento_id' => $formData['tipo_pagamento'],
+            'pedido_id' => $pedido->pedido_id,
+            'data_pagamento' => now(),
+        ]);
+
+        return response()->json(['message' => 'Pedido criado com sucesso'], 200);
+    }
+
     public function index()
     {
         //
@@ -19,14 +62,6 @@ class PedidoController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
     {
         //
     }

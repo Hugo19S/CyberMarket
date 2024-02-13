@@ -12,7 +12,7 @@ class TipoPagamentoController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

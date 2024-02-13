@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class ProdutoController extends Controller
@@ -13,13 +12,6 @@ class ProdutoController extends Controller
      * Display a listing of the resource.
      */
 
-
-    public function checkout()
-    {
-
-        return view('pages.client.checkout');
-
-    }
 
     public function search(Request $request)
     {
@@ -34,7 +26,6 @@ class ProdutoController extends Controller
 
     public function productCart()
     {
-
         return view('pages.client.cart');
     }
 
@@ -43,6 +34,8 @@ class ProdutoController extends Controller
         $product = Http::get('http://127.0.0.1:8000/api/produtos/' . $id);
 
         $cart = session()->get('cart', []);
+
+
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
@@ -77,9 +70,11 @@ class ProdutoController extends Controller
             if (isset($cart[$request->id])) {
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
+                /*$this->updateCart($request);*/
             }
-            session()->flash('success', 'Book successfully deleted.');
+            session()->flash('success', 'Product successfully deleted.');
         }
+
     }
 
 

@@ -115,20 +115,11 @@
                 <form action="{{ route('api.logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="text-gray-900">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20"
-                             fill="currentColor">
-                            <path fill-rule="evenodd"
-                                  d="M3 10a7 7 0 1 1 14 0 7 7 0 0 1-14 0zm7-6a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm1 9v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 2 0z"
-                                  clip-rule="evenodd"/>
-                        </svg>
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
                         Logout
                     </button>
                 </form>
             @endif
-
-            @auth
-                {{ session('name') }}
-            @endauth
 
             @auth
                 <a href="/cliente/{{ session('id') }}" class="text-gray-900 relative">
@@ -143,12 +134,14 @@
             <a href="{{ route('shopping.cart') }}" class="text-gray-900 relative">
                 <i class="fa-solid fa-cart-shopping"></i>
                 @auth
-                    <span
-                        class="badge text-bg-danger absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2">
-                        @if(count((array) session('cart')) > 0)
+                    @if(count((array) session('cart')) > 0)
+                        <span
+                            class="text-center w-5 h-5 rounded-full bg-red-500 absolute top-0 right-0
+                            transform translate-x-1/2 -translate-y-1/2 text-sm text-white">
                             {{ count((array) session('cart')) }}
-                        @endif
+
                     </span>
+                    @endif
                 @endauth
             </a>
         </div>

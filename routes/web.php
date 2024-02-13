@@ -36,8 +36,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/cliente/{id}', [ClienteController::class, 'detalhesConta'])->name('cliente.detalhes');
     Route::get('/carrinho', [ProdutoController::class, 'productCart'])->name('shopping.cart');
     Route::put('/cliente/{id}', [ClienteController::class, 'atualizar'])->name('cliente.atualizar');
-    Route::get('/checkout', [ProdutoController::class, 'checkout'])->name('checkout');
-    Route::get(('/pedido'),[PedidoController::class,'index'])->name('cliente.pedido');
+    Route::get('/checkout', [PedidoController::class, 'checkout'])->name('checkout');
+    Route::post('/checkout', [PedidoController::class, 'processCheckout'])->name('checkout.process');
+    Route::get('/resumo-encomenda', [PedidoController::class, 'resumoEncomenda'])->name('cliente.pedido');
 });
 
 
