@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
+use App\Models\Fabricante;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -23,13 +24,13 @@ class HomePageController extends Controller
         return response()->json(['categorias' => $categorias]);
     }
 
-    public function getProdutos()
+    public function getFabricante()
     {
-        $produtos = Produto::all();
-        return response()->json(['produtos' => $produtos]);
+        $fabricante = Fabricante::all();
+        return response()->json(['produtos' => $fabricante]);
     }
 
-    public function getProdutosComImagens()
+    public function getProdutos()
     {
         $produtosComImagens = Produto::with('imagens')->get();
 

@@ -13,14 +13,15 @@ body {
 .contentLogin{
     width: 100%;
     height: 100%;
+    background-color: #9fc5f8;
+    position: relative;
 }
 
 /*Css para a pagina do admin*/
 
 /*Css da página do login*/
 .contentLogin {
-    background-color: #9fc5f8;
-    position: relative;
+
 }
 
 .contentLogin,
@@ -93,7 +94,7 @@ body {
     padding: 0;
 }
 
-#menu-button {
+#menu-button-admin {
     height: 50px;
     width: 50px;
     font-size: 35px;
@@ -101,11 +102,11 @@ body {
     background-color: transparent;
 }
 
-#menu-button:hover {
+#menu-button-admin:hover, .large_icon:hover {
     background-color: rgb(0, 208, 255);
 }
 
-#menu-button.active:hover {
+#menu-button-admin.active:hover {
     background-color: #a5a5a5;
 }
 
@@ -141,7 +142,7 @@ body {
     display: flex;
 }
 
-#list-menu {
+#list-menu-admin{
     display: block;
     background-color: #9fc5f8;
     margin: 0;
@@ -259,8 +260,7 @@ body {
     background-color: ghostwhite;
     box-sizing: border-box;
     box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.2), 5px 5px 5px rgba(0, 0, 0, 0.2);
-
-    cursor: pointer;
+    overflow: hidden;
 }
 
 .productDetails > .contentRelative {
@@ -279,7 +279,7 @@ body {
     border-top-left-radius: 10px;
 }
 
-.imagDiv > img {
+.imagDiv img {
     width: 100%;
     height: 100%;
 }
@@ -508,6 +508,7 @@ body {
 .compartment1 {
     display: flex;
     gap: 3rem;
+    max-height: 413px;
 }
 
 .compartmentImage {
@@ -533,6 +534,7 @@ body {
     flex: 1 1 0;
     font-size: 17px;
     color: #8d8d8d;
+    overflow: hidden;
 }
 
 .product-description {

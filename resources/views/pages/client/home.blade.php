@@ -80,7 +80,7 @@
         <div class="swiper-main-container">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    @foreach ($produtosComImagem['produtosComImagens'] as $produtoComImagem)
+                    @foreach ($produtos['produtosComImagens'] as $produtoComImagem)
                         <div class="swiper-slide">
                             <x-product-card :produto="$produtoComImagem"/>
                         </div>

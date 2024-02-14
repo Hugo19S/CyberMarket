@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Fev-2024 às 14:39
--- Versão do servidor: 10.4.32-MariaDB
--- versão do PHP: 8.2.12
+-- Tempo de geração: 14-Fev-2024 às 13:40
+-- Versão do servidor: 10.4.28-MariaDB
+-- versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -75,7 +75,10 @@ INSERT INTO `cliente` (`cliente_id`, `nome_cliente`, `email`, `nif`, `morada`, `
 (6, 'falcao', 'falcao@gmail.com', NULL, NULL, NULL, 13, '2024-02-10 23:05:35', '2024-02-10 23:05:35'),
 (7, 'ronaldo', 'ronaldo@gmail.com', NULL, NULL, NULL, 14, '2024-02-10 23:06:34', '2024-02-10 23:06:34'),
 (8, 'figo', 'figo@gmail.com', NULL, NULL, NULL, 15, '2024-02-10 23:09:00', '2024-02-10 23:09:00'),
-(9, 'José Mourinho', 'jm@gmail.com', NULL, NULL, NULL, 16, '2024-02-11 00:26:38', '2024-02-11 00:26:38');
+(9, 'José Mourinho', 'jm@gmail.com', NULL, NULL, NULL, 16, '2024-02-11 00:26:38', '2024-02-11 00:26:38'),
+(10, 'Seta', 'seta@gmail.com', NULL, NULL, NULL, 17, '2024-02-14 00:17:18', '2024-02-14 00:17:18'),
+(11, 'Seta Grande', 'st@gmail.com', NULL, NULL, NULL, 19, '2024-02-14 00:23:41', '2024-02-14 00:23:41'),
+(12, 'teste2', 'teste2@gmail.com', NULL, NULL, NULL, 20, '2024-02-14 00:24:58', '2024-02-14 00:24:58');
 
 -- --------------------------------------------------------
 
@@ -189,13 +192,22 @@ CREATE TABLE `pagamento` (
   `pagamento_id` bigint(20) UNSIGNED NOT NULL,
   `tipo_pagamento_id` bigint(20) UNSIGNED NOT NULL,
   `pedido_id` bigint(20) UNSIGNED NOT NULL,
-  `descricao` varchar(255) NOT NULL,
   `data_pagamento` datetime NOT NULL,
-  `quantidade` int(11) NOT NULL,
-  `status_pagamento` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `pagamento`
+--
+
+INSERT INTO `pagamento` (`pagamento_id`, `tipo_pagamento_id`, `pedido_id`, `data_pagamento`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, '2024-02-13 22:34:39', '2024-02-13 22:34:39', '2024-02-13 22:34:39'),
+(2, 2, 3, '2024-02-13 23:41:33', '2024-02-13 23:41:33', '2024-02-13 23:41:33'),
+(3, 2, 4, '2024-02-14 11:50:41', '2024-02-14 11:50:41', '2024-02-14 11:50:41'),
+(4, 2, 5, '2024-02-14 11:51:07', '2024-02-14 11:51:07', '2024-02-14 11:51:07'),
+(5, 2, 6, '2024-02-14 11:51:52', '2024-02-14 11:51:52', '2024-02-14 11:51:52'),
+(6, 3, 7, '2024-02-14 11:52:54', '2024-02-14 11:52:54', '2024-02-14 11:52:54');
 
 -- --------------------------------------------------------
 
@@ -213,6 +225,18 @@ CREATE TABLE `pedido` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `pedido`
+--
+
+INSERT INTO `pedido` (`pedido_id`, `cliente_id`, `data_pedido`, `preco_total`, `status`, `created_at`, `updated_at`) VALUES
+(2, 9, '2024-02-13 22:34:39', 2299.98, 'Pendente', '2024-02-13 22:34:39', '2024-02-13 22:34:39'),
+(3, 9, '2024-02-13 23:41:33', 599.99, 'Pendente', '2024-02-13 23:41:33', '2024-02-13 23:41:33'),
+(4, 9, '2024-02-14 11:50:41', 799.99, 'Pendente', '2024-02-14 11:50:41', '2024-02-14 11:50:41'),
+(5, 9, '2024-02-14 11:51:07', 1499.99, 'Pendente', '2024-02-14 11:51:07', '2024-02-14 11:51:07'),
+(6, 9, '2024-02-14 11:51:52', 1399.98, 'Pendente', '2024-02-14 11:51:52', '2024-02-14 11:51:52'),
+(7, 9, '2024-02-14 11:52:54', 899.97, 'Pendente', '2024-02-14 11:52:54', '2024-02-14 11:52:54');
+
 -- --------------------------------------------------------
 
 --
@@ -227,6 +251,22 @@ CREATE TABLE `pedido_produto` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `pedido_produto`
+--
+
+INSERT INTO `pedido_produto` (`pedido_produto_id`, `pedido_id`, `produto_id`, `quantidade`, `created_at`, `updated_at`) VALUES
+(3, 2, 4, 1, '2024-02-13 22:34:39', '2024-02-13 22:34:39'),
+(4, 2, 5, 1, '2024-02-13 22:34:39', '2024-02-13 22:34:39'),
+(5, 3, 15, 1, '2024-02-13 23:41:33', '2024-02-13 23:41:33'),
+(6, 4, 2, 1, '2024-02-14 11:50:41', '2024-02-14 11:50:41'),
+(7, 5, 3, 1, '2024-02-14 11:51:07', '2024-02-14 11:51:07'),
+(8, 6, 5, 1, '2024-02-14 11:51:52', '2024-02-14 11:51:52'),
+(9, 6, 2, 1, '2024-02-14 11:51:52', '2024-02-14 11:51:52'),
+(10, 7, 14, 1, '2024-02-14 11:52:54', '2024-02-14 11:52:54'),
+(11, 7, 8, 1, '2024-02-14 11:52:54', '2024-02-14 11:52:54'),
+(12, 7, 7, 2, '2024-02-14 11:52:54', '2024-02-14 11:52:54');
 
 -- --------------------------------------------------------
 
@@ -261,12 +301,12 @@ INSERT INTO `produto` (`produto_id`, `tipo_produto_id`, `fabricante_id`, `admin_
 (3, 1, 3, 1, 'Notebook Profissional Lenovo', 'SKU789', 'Notebook potente para uso profissional', 1499.99, 'Loja de Informática', 20, '2023-12-11 18:10:00', 'Modelo123', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
 (4, 3, 4, 1, 'Desktop Design Gráfico Dell', 'SKU101', 'Desktop otimizado para design gráfico', 1699.99, 'Loja de Computadores', 25, '2023-12-11 18:15:00', 'Modelo456', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
 (5, 4, 5, 1, 'Desktop Econômico Acer', 'SKU202', 'Desktop acessível para uso diário', 599.99, 'Loja de Tecnologia', 40, '2023-12-11 18:20:00', 'Modelo789', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
-(6, 6, 6, 2, 'Notebook Conversível Asus', 'SKU303', 'Notebook versátil com tela conversível', 1299.99, 'Loja de Eletrônicos', 15, '2023-12-11 18:25:00', 'Modelo101', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
-(7, 7, 7, 2, 'Impressora Laser Monocromática Toshiba', 'SKU404', 'Impressora monocromática de alta qualidade', 299.99, 'Loja de Impressoras', 10, '2023-12-11 18:30:00', 'Modelo202', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
-(8, 9, 8, 2, 'Impressora Multifuncional Wi-Fi Microsoft', 'SKU505', 'Impressora multifuncional com conectividade sem fio', 349.99, 'Loja de Tecnologia', 18, '2023-12-11 18:35:00', 'Modelo303', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
-(9, 13, 9, 2, 'Monitor LED Full HD Fujitsu', 'SKU606', 'Monitor de alta definição para experiência visual excepcional', 249.99, 'Loja de Monitores', 22, '2023-12-11 18:40:00', 'Modelo404', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
-(10, 14, 10, 2, 'Monitor Ultrawide Curvo Samsung', 'SKU707', 'Monitor ultrawide com design curvo para imersão total', 799.99, 'Loja de Tecnologia', 12, '2023-12-11 18:45:00', 'Modelo505', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
-(11, 5, 11, 2, 'Notebook Leve Sony', 'SKU808', 'Notebook leve e portátil da Sony', 1199.99, 'Loja de Eletrônicos', 25, '2023-12-11 19:00:00', 'Modelo606', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
+(6, 6, 6, 1, 'Notebook Conversível Asus', 'SKU303', 'Notebook versátil com tela conversível', 1299.99, 'Loja de Eletrônicos', 15, '2023-12-11 18:25:00', 'Modelo101', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
+(7, 7, 7, 1, 'Impressora Laser Monocromática Toshiba', 'SKU404', 'Impressora monocromática de alta qualidade', 299.99, 'Loja de Impressoras', 10, '2023-12-11 18:30:00', 'Modelo202', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
+(8, 9, 8, 1, 'Impressora Multifuncional Wi-Fi Microsoft', 'SKU505', 'Impressora multifuncional com conectividade sem fio', 349.99, 'Loja de Tecnologia', 18, '2023-12-11 18:35:00', 'Modelo303', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
+(9, 13, 9, 1, 'Monitor LED Full HD Fujitsu', 'SKU606', 'Monitor de alta definição para experiência visual excepcional', 249.99, 'Loja de Monitores', 22, '2023-12-11 18:40:00', 'Modelo404', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
+(10, 14, 10, 1, 'Monitor Ultrawide Curvo Samsung', 'SKU707', 'Monitor ultrawide com design curvo para imersão total', 799.99, 'Loja de Tecnologia', 12, '2023-12-11 18:45:00', 'Modelo505', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
+(11, 5, 11, 1, 'Notebook Leve Sony', 'SKU808', 'Notebook leve e portátil da Sony', 1199.99, 'Loja de Eletrônicos', 25, '2023-12-11 19:00:00', 'Modelo606', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
 (12, 6, 12, 3, 'Notebook Conversível LG', 'SKU909', 'Notebook conversível da LG com design inovador', 1399.99, 'Loja de Tecnologia', 20, '2023-12-11 19:05:00', 'Modelo707', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
 (13, 8, 13, 3, 'Impressora Jato de Tinta LG', 'SKU1010', 'Impressora jato de tinta colorida da LG', 179.99, 'Loja de Impressoras', 15, '2023-12-11 19:10:00', 'Modelo808', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
 (14, 10, 14, 3, 'Impressora de Etiquetas Gigabyte', 'SKU1111', 'Impressora de etiquetas para negócios da Gigabyte', 249.99, 'Loja de Tecnologia', 12, '2023-12-11 19:15:00', 'Modelo909', '2024-02-10 20:37:26', '2024-02-10 20:37:26'),
@@ -426,7 +466,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `cliente_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `cliente_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `fabricante`
@@ -438,7 +478,7 @@ ALTER TABLE `fabricante`
 -- AUTO_INCREMENT de tabela `imagem`
 --
 ALTER TABLE `imagem`
-  MODIFY `imagem_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `imagem_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `migrations`
@@ -450,25 +490,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de tabela `pagamento`
 --
 ALTER TABLE `pagamento`
-  MODIFY `pagamento_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `pagamento_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `pedido_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `pedido_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `pedido_produto`
 --
 ALTER TABLE `pedido_produto`
-  MODIFY `pedido_produto_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `pedido_produto_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `produto_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `produto_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_pagamento`

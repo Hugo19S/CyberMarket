@@ -112,13 +112,10 @@
         <div class="login-cart-custom-order flex items-center space-x-3">
 
             @if(Auth::check())
-                <form action="{{ route('api.logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="text-gray-900">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        Logout
-                    </button>
-                </form>
+                <a href="{{route('logout.client')}}">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    Logout
+                </a>
             @endif
 
             @auth

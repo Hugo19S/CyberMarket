@@ -7,8 +7,8 @@ use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends BaseController
 {
@@ -16,38 +16,26 @@ class AuthController extends BaseController
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $authUser = Auth::user();
-            $success['token'] = $authUser->createToken('MyAuthApp')->plainTextToken;
+            $token = $authUser->createToken('MyAuthApp')->plainTextToken;
 
-            session(['id' => $authUser->id]);
-            session(['name' => $authUser->name]);
-            session(['email' => $authUser->email]);
-            session(['token' => $success['token']]);
+            $user = Cliente::where('user_id', '=', $authUser->id)->get();
 
-            session()->save();
-
-            return redirect()->route('home');
-
+            return response()->json([
+                'token' => $token,
+                'user' => $authUser,
+                'userData' => $user
+            ]);
         } else {
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            return response()->json(['error' => 'Unauthorized'], 401); // Credenciais inválidas
         }
     }
 
 
     public function signup(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'confirm_password' => 'required|same:password',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->sendError('Error validation', $validator->errors());
-        }
 
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
+        $input['password'] = bcrypt($request->password);
         $input['tipo_utilizador_id'] = 1;
 
         $user = User::create($input);
@@ -59,15 +47,11 @@ class AuthController extends BaseController
         ]);
 
         $cliente->save();
-        return redirect()->route('home');
     }
 
     public function logout(Request $request)
     {
-        Session::forget('cart');
         $request->user()->tokens()->delete();
-        Auth::guard('web')->logout();
-
- return redirect()->route('home');
+        Auth::logout();
     }
 }

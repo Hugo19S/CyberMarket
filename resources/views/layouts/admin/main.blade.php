@@ -15,12 +15,12 @@
         <header class="header">
             <div class="panel-default">
                 <div class="panel-heading">
-                    <div class="menu" id="menu">
-                        <button id="menu-button">&#9776;</button>
+                    <div class="menu" id="menu-admin">
+                        <button id="menu-button-admin">&#9776;</button>
                     </div>
                     <div class="head_items">
                         <div class="head_login_info">
-                            <h2>Hugo</h2>
+                            <h2>{{ auth()->user()->name }}</h2>
                             <span class="icone-usuario"><i class="fa-regular fa-user"></i></span>
                         </div>
                         <div class="head_search">
@@ -34,7 +34,7 @@
         </header>
 
         <div class="mainfragment">
-            <div id="list-menu">
+            <div id="list-menu-admin">
                 <ul class="option_container">
                     <div>
                         <li class="large_icon above">
@@ -60,7 +60,7 @@
                     </div>
                     <div>
                         <li class="large_icon" id="logout">
-                            <a href="#">
+                            <a href="{{route('logout.admin')}}">
                                 <img src="/sgv_admin/logout.svg" alt="pie chart icon" title="Sair">
                             </a>
                         </li>
@@ -69,15 +69,16 @@
                 </ul>
             </div>
 
-            <div class="content" id="content">
-                @yield('content')
+            <div class="content" id="content-admin">
+                @if(auth()->check())
+                    @yield('content')
+                @endif
             </div>
 
         </div>
 
-        <script src="/js/script_layout.js"></script>
-
     </div>
+    <script src="/js/script_layout.js"></script>
 </body>
 
 </html>

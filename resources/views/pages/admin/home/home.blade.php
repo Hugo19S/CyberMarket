@@ -17,18 +17,17 @@
         <div class="last_additions">
             <h3>Últimos 5 produtos adicionados</h3>
             <div class="additions">
-                @for ($i = 1; $i <= 5; $i++)
+                @foreach ($last5Added['results'] as $product)
                     <x-product-box
-                        image="/images/laptops.png"
-                        first_button="btn btn-primary"
-                        second_button="btn btn-danger"
-                        text_btn1="Editar"
-                        text_btn2="Eliminar"
-                        btn1_href="/secret/product/edit/1"
-                        btn2_href="#"
+                        image="{{$product['imagens'][0]['imagem_url']}}"
                         classDef="productItem"
+                        price="{{$product['preco']}}"
+                        name="{{$product['nome_produto']}}"
+                        owner="{{$product['vendedor']}}"
+                        category="{{$product['tipo_produto']['categoria']['nome_categoria']}}"
+                        id="{{$product['produto_id']}}"
                     />
-                @endfor
+                @endforeach
                 <button id="nextProduct">></button>
                 <button id="prevProduct"><</button>
             </div>
@@ -50,22 +49,22 @@
                     </thead>
 
                     <tbody class="tbody-orders">
-                    @for ($i = 1; $i <= 5; $i++)
+                    @foreach ($last5Orders['results'] as $orders)
                         <tr class="row_order_table">
-                            <td class="destaque" data-title="ID do pedido"><a href="/secret/management/order/2">#67226</a>
+                            <td class="destaque" data-title="ID do pedido"><a href="/secret/management/order/{{$orders['pedido_id']}}">#{{$orders['pedido_id']}}</a>
                             </td>
-                            <td class="geral" data-title="Data">24/10/2023</td>
-                            <td class="geral" data-title="Proprietário">Hana Milne</td>
+                            <td class="geral" data-title="Data">{{ date('Y-m-d', strtotime($orders['data_pedido'])) }}</td>
+                            <td class="geral" data-title="Proprietário">{{$orders['cliente']['nome_cliente']}}</td>
                             <td data-title="Status">
                                 <div class="status">
-                                    <p>Completo</p>
+                                    <p>{{$orders['status']}}</p>
                                 </div>
                             </td>
-                            <td class="geral" data-title="Itens">2</td>
-                            <td class="geral" data-title="Pagamento">Cartão visa</td>
-                            <td class="destaque" data-title="Total">€50.99</td>
+                            <td class="geral" data-title="Itens">{{count($orders['pedido_produto'])}}</td>
+                            <td class="geral" data-title="Pagamento">{{$orders['pagamento'][0]['tipo_pagamento']['nome_tipo_pagamento']}}</td>
+                            <td class="destaque" data-title="Total">{{$orders['preco_total']}}</td>
                         </tr>
-                    @endfor
+                    @endforeach
                     <button id="nextOrder">></button>
                     <button id="prevOrder"><</button>
                     </tbody>

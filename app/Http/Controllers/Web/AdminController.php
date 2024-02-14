@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Produto;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class AdminController extends Controller
 {
@@ -23,8 +24,10 @@ class AdminController extends Controller
             ['H', 87]
         ];
 
+        $last5Added = Http::get('http://127.0.0.1:8000/api/added/last5/' .Auth::id())->json();
+        $last5Orders = Http::get('http://127.0.0.1:8000/api/orders/last5')->json();
 
-        return view('pages.admin.home.home',compact('dataVegaChart'));
+        return view('pages.admin.home.home',compact('dataVegaChart', 'last5Added', 'last5Orders'));
     }
 
     function login(): View
@@ -32,14 +35,12 @@ class AdminController extends Controller
         return view('pages.admin.login.login');
     }
 
-    function verify()
-    {
-        return redirect('/secret/login')->with('msg', 'Login inválido, tente novamente!');
-    }
 
     function addProduct(): View
     {
-        return view('pages.admin.addProduct.add');
+        $allCategory = Http::get('http://127.0.0.1:8000/api/categorias')->json();
+        $allFabricante = Http::get('http://127.0.0.1:8000/api/fabricante')->json();
+        return view('pages.admin.addProduct.add', compact('allCategory', 'allFabricante'));
     }
 
     function editProduct(): View
@@ -49,44 +50,51 @@ class AdminController extends Controller
 
     function store(Request $request)
     {
-        $produto = new Produto;
-        $produto->categoria = $request->input('categoria');
-        $produto->tipo = $request->input('tipo_de_produto');
-        $produto->nome_produto = $request->input('name');
-        $produto->sku = $request->input('sku');
-        $produto->fabricante = $request->input('fabricante');
-        $produto->vendedor = $request->input('vendedor');
-        $produto->modelo = $request->input('modelo');
-        $produto->preco_produto = $request->input('preco');
-        $produto->quantidade = $request->input('quantidade');
-        $produto->desciption = $request->input('descricao');
-
         //image upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $requestImage = $request->image;
             $extension = $requestImage->extension();
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
             $requestImage->move(public_path('images/products'), $imageName);
-            $produto->image = $imageName;
+            $imagePath = '/images/products/' .$imageName;
+
+            $response = Http::post('http://127.0.0.1:8000/api/addProduct', [
+                'tipo_de_produto' => $request->input('tipo_de_produto'),
+                'fabricante' => $request->input('fabricante'),
+                'id' => Auth::id(),
+                'name' => $request->input('name'),
+                'sku' => $request->input('sku'),
+                'descricao' => $request->input('descricao'),
+                'preco' => $request->input('preco'),
+                'vendedor' => $request->input('vendedor'),
+                'quantidade' => $request->input('quantidade'),
+                'modelo' => $request->input('modelo'),
+                'image' => $imagePath
+            ]);
+
+            //dd($response);
         }
 
-        $produto->save();
-        return redirect('/secret/home');
+        return redirect('/secret/management/products');
     }
 
     public function showProducts(): View
     {
-        return view('pages.admin.managementProduct.products');
+        $allAddedProduct = Http::get('http://127.0.0.1:8000/api/added/' .Auth::id())->json();
+        return view('pages.admin.managementProduct.products' ,compact('allAddedProduct'));
     }
 
-    public function showProduct($id): View
+    public function showProductDetails($id): View
     {
-        return view('pages.admin.managementProduct.detailsProduct');
+        $allAddedProduct = Http::get('http://127.0.0.1:8000/api/produtos/' .$id)->json();
+        //dd($allAddedProduct);
+        return view('pages.admin.managementProduct.detailsProduct', compact('allAddedProduct'));
     }
 
     function showOrder(): View
     {
-        return view('pages.admin.managementOrder.order');
+        $orders = Http::get('http://127.0.0.1:8000/api/orders')->json();
+        return view('pages.admin.managementOrder.order', compact('orders'));
     }
 
     function orderDetails($id): View
@@ -107,5 +115,10 @@ class AdminController extends Controller
         ];
 
         return view('pages.admin.managementAnalytics.analytics',compact('dataFromController'));
+    }
+
+    public function deleteProduct($id){
+        Http::get('http://127.0.0.1:8000/api/produto/delete/' .$id);
+        return redirect()->back();
     }
 }

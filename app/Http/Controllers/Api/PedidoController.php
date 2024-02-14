@@ -8,6 +8,7 @@ use App\Models\Pagamento;
 use App\Models\Pedido;
 use App\Models\PedidoProduto;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\select;
 
 class PedidoController extends Controller
 {
@@ -31,7 +32,7 @@ class PedidoController extends Controller
             'cliente_id' => $clientId->cliente_id,
             'data_pedido' => now(),
             'preco_total' => $precoTotal,
-            'status' => 'Em processamento',
+            'status' => 'Pendente',
         ]);
 
         $pedido->save();
@@ -53,25 +54,47 @@ class PedidoController extends Controller
         return response()->json(['message' => 'Pedido criado com sucesso'], 200);
     }
 
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
         //
+    }
+
+    public function showAll()
+    {
+        $pedidos = Pedido::with(['cliente' => function ($query) {
+            $query->select('cliente_id', 'nome_cliente');
+        }])
+            ->with(['pagamento' => function ($query) {
+                $query->select('pedido_id', 'pagamento_id', 'data_pagamento', 'tipo_pagamento_id')
+                ->with(['tipoPagamento' => function($query){
+                    $query->select('tipo_pagamento_id', 'nome_tipo_pagamento');
+                }]);
+            }])
+            ->with('pedidoProduto')
+            ->select('pedido_id', 'cliente_id', 'data_pedido', 'preco_total', 'status')
+            ->get();
+
+        return response()->json(['results' => $pedidos]);
+    }
+
+    public function returnLast5Orders(){
+        $pedidos = Pedido::with(['cliente' => function ($query) {
+            $query->select('cliente_id', 'nome_cliente');
+        }])
+            ->with(['pagamento' => function ($query) {
+                $query->select('pedido_id', 'pagamento_id', 'data_pagamento', 'tipo_pagamento_id')
+                    ->with(['tipoPagamento' => function($query){
+                        $query->select('tipo_pagamento_id', 'nome_tipo_pagamento');
+                    }]);
+            }])
+            ->with('pedidoProduto')
+            ->select('pedido_id', 'cliente_id', 'data_pedido', 'preco_total', 'status')
+            ->take(5)->get();
+
+        return response()->json(['results' => $pedidos]);
     }
 
     /**

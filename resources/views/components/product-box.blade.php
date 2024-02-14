@@ -1,43 +1,43 @@
 @props([
     'image',
-    'first_button',
-    'second_button',
-    'text_btn1',
-    'text_btn2',
-    'btn1_href',
-    'btn2_href',
-    'classDef'
+    'classDef',
+    'price',
+    'name',
+    'owner',
+    'category',
+    'id'
 ])
 
 <div class="productDetails {{$classDef}}">
-    <div class="contentRelative" onclick="window.location.href='/secret/management/product/details/1';">
+    <div class="contentRelative">
         <div class="imagDiv">
-            <img src="{{$image}}" alt="product image">
+            <a href="/secret/management/product/details/{{$id}}">
+                <img src="{{$image}}" alt="product image">
+            </a>
         </div>
         <div class="productInfos">
-            <div class="price">€549,99</div>
+            <div class="price">{{$price}}</div>
             <div class="productName">
-                Lenovo Newest Flagship Chromebook, 14'' FHD Touchscreen Slim Thin Light Laptop Computer, 8-Core MediaTek
-                Kompanio 520 Processor, 4GB RAM, 64GB eMMC, WiFi 6,Chrome
+                {{$name}}
             </div>
             <div class="productCategory">
                 <span>Categoria:</span>
                 <div class="categoryDiv">
-                    <span class="category">Computadores e Laptops</span>
+                    <span class="category">{{$category}}</span>
                 </div>
             </div>
             <div class="productProvider">
                 <span>Vendedor:</span>
                 <div class="categoryDiv">
-                    <span class="category">SKYHE</span>
+                    <span class="category">{{$owner}}</span>
                 </div>
             </div>
         </div>
     </div>
     <div class="containerButtons">
         <div class="buttonsOrg">
-            <a href="{{ $btn1_href }}" class="{{$first_button}}">{{ $text_btn1 }}</a>
-            <a href="{{ $btn2_href }}" class="{{$second_button}}">{{ $text_btn2 }}</a>
+            <a href="/secret/product/edit/{{$id}}" class="btn btn-primary">Editar</a>
+            <a href="/secret/product/delete/{{$id}}" class="btn btn-danger">Eliminar</a>
         </div>
     </div>
 </div>

@@ -20,13 +20,10 @@ class HomePageController extends Controller
 
         $produtosResponse = Http::get('http://127.0.0.1:8000/api/produtos');
         $produtos = $produtosResponse->json();
-
-        $produtosComImagemResponse = Http::get('http://127.0.0.1:8000/api/produtos-com-imagens');
-        $produtosComImagem = $produtosComImagemResponse->json();
         ;
 
         return view('pages.client.home', ['categorias' => $categorias,
-            'produtos' => $produtos, 'produtosComImagem' => $produtosComImagem]);
+            'produtos' => $produtos]);
     }
 
 

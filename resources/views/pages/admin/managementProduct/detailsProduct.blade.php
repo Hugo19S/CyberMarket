@@ -8,50 +8,50 @@
         <h1>Detalhes do produto</h1>
         <div class="compartment1">
             <div class="compartmentImage">
-                <img src="/images/laptops.png" alt="">
+                <img src="{{$allAddedProduct['produto']['imagens'][0]['imagem_url']}}" alt="{{$allAddedProduct['produto']['nome_produto']}}">
             </div>
             <div class="compartmentData">
                 <table class="table">
                     <tbody>
                     <tr>
                         <th scope="row">Nome do produto</th>
-                        <td>HP 15s-fq5054ns</td>
+                        <td>{{$allAddedProduct['produto']['nome_produto']}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Categoria</th>
-                        <td>Computador</td>
+                        <td>{{$allAddedProduct['produto']['tipo_produto']['categoria']['nome_categoria']}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Tipo de produto</th>
-                        <td>Computador</td>
+                        <td>{{$allAddedProduct['produto']['tipo_produto']['nome_tipo_produto']}}</td>
                     </tr>
                     <tr>
                         <th scope="row">SKU</th>
-                        <td>651818</td>
+                        <td>{{$allAddedProduct['produto']['sku']}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Vendedor</th>
-                        <td>Mohamed hafez</td>
+                        <td>{{$allAddedProduct['produto']['vendedor']}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Fabricante</th>
-                        <td>Lenovo</td>
+                        <td>Por adicionar</td>
                     </tr>
                     <tr>
                         <th scope="row">Modelo</th>
-                        <td>LEGION 5 15ACH6-276</td>
+                        <td>{{$allAddedProduct['produto']['modelo']}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Preço</th>
-                        <td>869.99</td>
+                        <td>{{$allAddedProduct['produto']['preco']}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Quantidade</th>
-                        <td>25</td>
+                        <td>{{$allAddedProduct['produto']['quantidade']}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Data de criação</th>
-                        <td>01/01/2024</td>
+                        <td>{{$allAddedProduct['produto']['data_criacao']}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -60,7 +60,7 @@
 
         <div class="mb-3">
             <label for="description" class="product-description">Descrição</label>
-            <textarea class="form-control textareaDetails" id="description" rows="3">O Portátil LENOVO 1 15IGL7 é um dispositivo compacto e leve, com um peso de 1,54 kg e medidas de 24 cm de largura, 36,2 cm de altura e 17,9 cm de profundidade. Este portátil vem equipado com um processador Intel Celeron N4020 com arquitetura Gemini Lake Refresh e dois núcleos, oferecendo uma velocidade de processamento de até 1,1 GHz, que pode ser aumentada para 2,8 GHz com o modo Turbo. A placa gráfica Intel UHD Graphics 600 integrada na CPU oferece gráficos nítidos e vibrantes.</textarea>
+            <textarea class="form-control textareaDetails" id="description" rows="3">{{$allAddedProduct['produto']['descricao']}}</textarea>
         </div>
 
     </div>

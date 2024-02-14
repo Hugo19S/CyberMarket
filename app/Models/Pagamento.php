@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pagamento extends Model
 {
-    protected $fillable = ['tipo_pagamento_id', 'pedido_id', 'descricao', 'data_pagamento', 'quantidade', 'status_pagamento'];
+    protected $fillable = ['tipo_pagamento_id', 'pedido_id', 'data_pagamento'];
     protected $primaryKey = 'pagamento_id';
     protected $table = 'pagamento';
 

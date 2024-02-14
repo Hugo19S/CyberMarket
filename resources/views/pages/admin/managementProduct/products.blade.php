@@ -10,18 +10,17 @@
             <h1>Gestão de Produtos</h1>
             <a class="btn btn-success btn-add-product" href="/secret/product/add">Adicionar Produto</a>
             <div class="management">
-                @for ($i = 1; $i <= 16; $i++)
+                @foreach ($allAddedProduct['results'] as $product)
                     <x-product-box
-                        image="/images/laptops.png"
-                        first_button="btn btn-primary"
-                        second_button="btn btn-danger"
-                        text_btn1="Editar"
-                        text_btn2="Eliminar"
-                        btn1_href="/secret/product/edit/1"
-                        btn2_href="#"
+                        image="{{$product['imagens'][0]['imagem_url']}}"
                         classDef="box-product"
+                        price="{{$product['preco']}}"
+                        name="{{$product['nome_produto']}}"
+                        owner="{{$product['vendedor']}}"
+                        category="{{$product['tipo_produto']['categoria']['nome_categoria']}}"
+                        id="{{$product['produto_id']}}"
                     />
-                @endfor
+                @endforeach
             </div>
         </div>
     </div>

@@ -22,21 +22,21 @@
                 </thead>
 
                 <tbody>
-                @for ($i = 1; $i <= 50; $i++)
+                @foreach ($orders['results'] as $orders)
                     <tr class="row_order_table">
-                        <td class="destaque" data-title="ID do pedido"><a href="/secret/management/order/2">#67226</a></td>
-                        <td class="geral" data-title="Data">24/10/2023</td>
-                        <td class="geral" data-title="Proprietário">Hana Milne</td>
+                        <td class="destaque" data-title="ID do pedido"><a href="/secret/management/order/{{$orders['pedido_id']}}">#{{$orders['pedido_id']}}</a></td>
+                        <td class="geral" data-title="Data">{{ date('Y-m-d', strtotime($orders['data_pedido'])) }}</td>
+                        <td class="geral" data-title="Proprietário">{{$orders['cliente']['nome_cliente']}}</td>
                         <td data-title="Status">
                             <div  class="status">
-                                <p>Completo</p>
+                                <p>{{$orders['status']}}</p>
                             </div>
                         </td>
-                        <td class="geral" data-title="Itens">2</td>
-                        <td class="geral" data-title="Pagamento">Cartão visa</td>
-                        <td class="destaque" data-title="Total">€50.99</td>
+                        <td class="geral" data-title="Itens">{{count($orders['pedido_produto'])}}</td>
+                        <td class="geral" data-title="Pagamento">{{$orders['pagamento'][0]['tipo_pagamento']['nome_tipo_pagamento']}}</td>
+                        <td class="destaque" data-title="Total">{{$orders['preco_total']}}</td>
                     </tr>
-                @endfor
+                @endforeach
                 </tbody>
             </table>
 
