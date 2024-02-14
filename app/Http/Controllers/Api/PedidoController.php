@@ -59,21 +59,26 @@ class PedidoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pedido = Pedido::with('cliente')
+            ->with('pagamento.tipoPagamento')
+            ->with('pedidoProduto.produto')
+            ->where('pedido_id', $id)->get();
+
+        return response()->json($pedido);
     }
 
     public function showAll()
     {
-        $pedidos = Pedido::with(['cliente' => function ($query) {
-            $query->select('cliente_id', 'nome_cliente');
-        }])
+        $pedidos = Pedido::with('cliente')
             ->with(['pagamento' => function ($query) {
                 $query->select('pedido_id', 'pagamento_id', 'data_pagamento', 'tipo_pagamento_id')
                 ->with(['tipoPagamento' => function($query){
                     $query->select('tipo_pagamento_id', 'nome_tipo_pagamento');
                 }]);
             }])
-            ->with('pedidoProduto')
+            ->with(['pedidoProduto.produto' => function ($query) {
+                $query->select('produto_id', 'tipo_produto_id', 'fabricante_id', 'admin_id', 'nome_produto', 'sku', 'descricao', 'preco', 'vendedor', 'quantidade', 'data_criacao', 'modelo', 'created_at', 'updated_at');
+            }])
             ->select('pedido_id', 'cliente_id', 'data_pedido', 'preco_total', 'status')
             ->get();
 
@@ -108,9 +113,12 @@ class PedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateStatus(Request $request)
     {
-        //
+        $pedido = Pedido::findOrFail($request->id);
+        $pedido->update([
+            'status' => $request->status
+        ]);
     }
 
     /**

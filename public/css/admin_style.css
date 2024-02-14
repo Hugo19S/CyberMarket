@@ -443,10 +443,9 @@ body {
 }
 
 .publish {
-
     border: 1px solid #b7b7b7;
     flex: 1 1 0;
-    height: 130px;
+    height: 87px;
 
     & h4 {
         margin: 0;
@@ -486,14 +485,8 @@ body {
     flex: 1 1 0;
 }
 
-.deliveryAddress label {
-    margin-bottom: 12px;
-}
-
 .selectedProduct {
     box-sizing: border-box;
-    border: 1px solid #b7b7b7;
-    padding: 20px;
 
     .span {
         max-width: 280px;

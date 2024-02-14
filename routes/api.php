@@ -48,6 +48,10 @@ Route::get('logout', [AuthController::class, 'logout'])->name('api.logout');
 Route::get('/added/{id}', [ProdutoController::class, 'allAddedProduct']);
 Route::get('/added/last5/{id}', [ProdutoController::class, 'returnLast5AddedProduct']);
 Route::post('/addProduct', [ProdutoController::class, 'store']);
+Route::put('/changeProduct', [ProdutoController::class, 'saveChanges']);
 Route::get('/produto/delete/{id}', [ProdutoController::class, 'destroy']);
 Route::get('/orders', [PedidoController::class, 'showAll']);
+Route::get('/order/{id}', [PedidoController::class, 'show']);
+Route::put('/order/status', [PedidoController::class, 'updateStatus']);
 Route::get('/orders/last5', [PedidoController::class, 'returnLast5Orders']);
+

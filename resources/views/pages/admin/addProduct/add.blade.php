@@ -23,7 +23,6 @@
                 <div class="form-group">
                     <label for="tipo_de_produto">Tipo de produto</label><br/>
                     <select name="tipo_de_produto" class="form-control" id="productTypeSelect">
-
                     </select>
                 </div>
                 <div class="form-group">

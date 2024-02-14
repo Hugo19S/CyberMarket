@@ -63,6 +63,40 @@ class ProdutoController extends Controller
         return response()->json(['productId' => $product->produto_id, 'imageId' => $imageSave->imagem_id]);
     }
 
+    public function saveChanges(Request $request)
+    {
+        $product = Produto::findOrFail($request->id_product);
+        if ($request->image){
+
+            $this->saveProduct($product, $request);
+
+            $imageSave = Imagem::findOrFail($request->id_product);
+            $imageSave->update([
+                $imageSave->imagem_url = $request->image
+            ]);
+        }else{
+            $this->saveProduct($product, $request);
+        }
+        return response()->json(['productId' => $product->produto_id]);
+    }
+
+    public function saveProduct($product, $request): void
+    {
+        $product->update([
+            $product->tipo_produto_id = $request->tipo_de_produto,
+            $product->fabricante_id = $request->fabricante,
+            $product->admin_id = $request->id,
+            $product->nome_produto = $request->name,
+            $product->sku = 'SKU' . $request->sku,
+            $product->descricao = $request->descricao,
+            $product->preco = $request->preco,
+            $product->vendedor = $request->vendedor,
+            $product->quantidade = $request->quantidade,
+            $product->data_criacao = Carbon::now()->toDateTimeString(),
+            $product->modelo = $request->modelo
+        ]);
+    }
+
     /**
      * Display the specified resource.
      */

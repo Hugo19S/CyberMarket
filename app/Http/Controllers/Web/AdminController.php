@@ -43,9 +43,12 @@ class AdminController extends Controller
         return view('pages.admin.addProduct.add', compact('allCategory', 'allFabricante'));
     }
 
-    function editProduct(): View
+    function editProduct($id): View
     {
-        return view('pages.admin.editProduct.edit');
+        $product = Http::get('http://127.0.0.1:8000/api/produtos/' .$id)->json();
+        $allCategory = Http::get('http://127.0.0.1:8000/api/categorias')->json();
+        $allFabricante = Http::get('http://127.0.0.1:8000/api/fabricante')->json();
+        return view('pages.admin.editProduct.edit', compact('product', 'allCategory', 'allFabricante', 'id'));
     }
 
     function store(Request $request)
@@ -78,6 +81,50 @@ class AdminController extends Controller
         return redirect('/secret/management/products');
     }
 
+    function saveChanges(Request $request, $id)
+    {
+        //image upload
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $requestImage = $request->image;
+            $extension = $requestImage->extension();
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $requestImage->move(public_path('images/products'), $imageName);
+            $imagePath = '/images/products/' .$imageName;
+
+            Http::put('http://127.0.0.1:8000/api/changeProduct', [
+                'tipo_de_produto' => $request->input('tipo_de_produto'),
+                'fabricante' => $request->input('fabricante'),
+                'id' => Auth::id(),
+                'name' => $request->input('name'),
+                'sku' => $request->input('sku'),
+                'descricao' => $request->input('descricao'),
+                'preco' => $request->input('preco'),
+                'vendedor' => $request->input('vendedor'),
+                'quantidade' => $request->input('quantidade'),
+                'modelo' => $request->input('modelo'),
+                'image' => $imagePath,
+                'id_product' => $id
+            ]);
+        }
+        else{
+            Http::put('http://127.0.0.1:8000/api/changeProduct', [
+                'tipo_de_produto' => $request->input('tipo_de_produto'),
+                'fabricante' => $request->input('fabricante'),
+                'id' => Auth::id(),
+                'name' => $request->input('name'),
+                'sku' => $request->input('sku'),
+                'descricao' => $request->input('descricao'),
+                'preco' => $request->input('preco'),
+                'vendedor' => $request->input('vendedor'),
+                'quantidade' => $request->input('quantidade'),
+                'modelo' => $request->input('modelo'),
+                'id_product' => $id
+            ]);
+        }
+
+        return redirect('/secret/management/products');
+    }
+
     public function showProducts(): View
     {
         $allAddedProduct = Http::get('http://127.0.0.1:8000/api/added/' .Auth::id())->json();
@@ -87,7 +134,6 @@ class AdminController extends Controller
     public function showProductDetails($id): View
     {
         $allAddedProduct = Http::get('http://127.0.0.1:8000/api/produtos/' .$id)->json();
-        //dd($allAddedProduct);
         return view('pages.admin.managementProduct.detailsProduct', compact('allAddedProduct'));
     }
 
@@ -99,7 +145,8 @@ class AdminController extends Controller
 
     function orderDetails($id): View
     {
-        return view('pages.admin.managementOrder.details');
+        $orders = Http::get('http://127.0.0.1:8000/api/order/' .$id)->json();
+        return view('pages.admin.managementOrder.details', compact('orders', 'id'));
     }
 
     function showAnalytics(): View
@@ -120,5 +167,14 @@ class AdminController extends Controller
     public function deleteProduct($id){
         Http::get('http://127.0.0.1:8000/api/produto/delete/' .$id);
         return redirect()->back();
+    }
+
+    public function saveChangesOrder(Request $request){
+
+        Http::put('http://127.0.0.1:8000/api/order/status',[
+            'id' => $request['orderKey'],
+            'status' => $request['status']
+        ]);
+        return redirect('/secret/management/order');
     }
 }
