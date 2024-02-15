@@ -8,7 +8,6 @@ use App\Models\Pagamento;
 use App\Models\Pedido;
 use App\Models\PedidoProduto;
 use Illuminate\Http\Request;
-use function Laravel\Prompts\select;
 
 class PedidoController extends Controller
 {
@@ -51,7 +50,7 @@ class PedidoController extends Controller
             'data_pagamento' => now(),
         ]);
 
-        return response()->json(['message' => 'Pedido criado com sucesso'], 200);
+        return response()->json(['pedido_id' => $pedido->pedido_id], 200);
     }
 
     /**
@@ -72,32 +71,32 @@ class PedidoController extends Controller
         $pedidos = Pedido::with('cliente')
             ->with(['pagamento' => function ($query) {
                 $query->select('pedido_id', 'pagamento_id', 'data_pagamento', 'tipo_pagamento_id')
-                ->with(['tipoPagamento' => function($query){
-                    $query->select('tipo_pagamento_id', 'nome_tipo_pagamento');
-                }]);
+                    ->with(['tipoPagamento' => function ($query) {
+                        $query->select('tipo_pagamento_id', 'nome_tipo_pagamento');
+                    }]);
             }])
             ->with(['pedidoProduto.produto' => function ($query) {
                 $query->select('produto_id', 'tipo_produto_id', 'fabricante_id', 'admin_id', 'nome_produto', 'sku', 'descricao', 'preco', 'vendedor', 'quantidade', 'data_criacao', 'modelo', 'created_at', 'updated_at');
             }])
-            ->select('pedido_id', 'cliente_id', 'data_pedido', 'preco_total', 'status')
-            ->get();
+            ->select('pedido_id', 'cliente_id', 'data_pedido', 'preco_total', 'status')->orderBy('data_pedido', 'desc')->get();
 
         return response()->json(['results' => $pedidos]);
     }
 
-    public function returnLast5Orders(){
+    public function returnLast5Orders()
+    {
         $pedidos = Pedido::with(['cliente' => function ($query) {
             $query->select('cliente_id', 'nome_cliente');
         }])
             ->with(['pagamento' => function ($query) {
                 $query->select('pedido_id', 'pagamento_id', 'data_pagamento', 'tipo_pagamento_id')
-                    ->with(['tipoPagamento' => function($query){
+                    ->with(['tipoPagamento' => function ($query) {
                         $query->select('tipo_pagamento_id', 'nome_tipo_pagamento');
                     }]);
             }])
             ->with('pedidoProduto')
             ->select('pedido_id', 'cliente_id', 'data_pedido', 'preco_total', 'status')
-            ->take(5)->get();
+            ->take(5)->orderBy('data_pedido', 'desc')->get();
 
         return response()->json(['results' => $pedidos]);
     }

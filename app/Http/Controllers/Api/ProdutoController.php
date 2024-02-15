@@ -102,13 +102,12 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        //$produto = Produto::with('imagens')->find($id);
 
         $produto = Produto::with(['imagens' => function ($query) {
-            $query->select('produto_id', 'imagem_url'); // Selecionar apenas o produto_id e a imagem_url
+            $query->select('produto_id', 'imagem_url');
         }])->with(['tipoProduto.categoria' => function ($query) {
             $query->select('categoria_id', 'nome_categoria');
-        }])
+        }])->with('fabricante')
             ->find($id);
 
 

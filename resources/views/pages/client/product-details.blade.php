@@ -39,21 +39,20 @@
                     <div class="flex mb-4">
                         <div class="mr-4">
                             <span class="font-bold text-black-700 dark:text-black-300">Referência:</span>
-                            <span class="text-black-600 dark:text-black-300">{{$produto['produto']['sku']}};</span>
+                            <span class="text-black-600 dark:text-black-300">{{$produto['produto']['sku']}}</span>
 
                         </div>
                     </div>
                     <div class="flex mb-4">
                         <div class="mr-4">
                             <span class="font-bold text-black-700 dark:text-black-300">Fabricante:</span>
-                            <span class="text-black-600 dark:text-black-300">ASUS</span>
-
+                            <span class="text-black-600 dark:text-black-300">{{$produto['produto']['fabricante']['nome_fabricante']}}</span>
                         </div>
                     </div>
                     <div class="flex mb-4">
                         <div class="mr-4">
                             <span class="font-bold text-black-700 dark:text-black-300">Vendido Por:</span>
-                            <span class="text-black-600 dark:text-black-300">{{$produto['produto']['vendedor']}};</span>
+                            <span class="text-black-600 dark:text-black-300">{{$produto['produto']['vendedor']}}</span>
 
                         </div>
                     </div>

@@ -16,11 +16,17 @@ class ClienteController extends Controller
 
     public function register()
     {
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>8
+        ]);
         return view('pages.client.register');
     }
 
     public function login()
     {
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>4
+        ]);
         return view('pages.client.login');
     }
 
@@ -31,6 +37,9 @@ class ClienteController extends Controller
 
         $cliente = Cliente::where('user_id', $userId)->first();
 
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>9
+        ]);
         return view('pages.client.user-details', ['cliente' => $cliente]);
     }
 
@@ -49,60 +58,11 @@ class ClienteController extends Controller
             'telemovel' => $request->input('telemovel'),
         ]);
 
+
         if ($response->successful()) {
             return redirect()->route('cliente.detalhes', ['id' => session('id')])->with('success', 'Cliente atualizado com sucesso');
         } else {
             return back()->withInput()->with('error', 'Erro ao atualizar o cliente');
         }
-    }
-
-
-    public function index()
-    {
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

@@ -21,11 +21,17 @@ class ProdutoController extends Controller
 
         $resultados = $response->json()['resultados'];
 
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>7
+        ]);
         return view('pages.client.product-list', ['resultados' => $resultados]);
     }
 
     public function productCart()
     {
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>2
+        ]);
         return view('pages.client.cart');
     }
 
@@ -74,62 +80,17 @@ class ProdutoController extends Controller
             }
             session()->flash('success', 'Product successfully deleted.');
         }
-
     }
 
 
-    public function index()
-    {
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $produto = Http::get('http://127.0.0.1:8000/api/produtos/' . $id);
 
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>6
+        ]);
         return view('pages.client.product-details', ['produto' => $produto]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

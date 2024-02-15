@@ -114,7 +114,6 @@
             @if(Auth::check())
                 <a href="{{route('logout.client')}}">
                     <i class="fa fa-sign-out" aria-hidden="true"></i>
-                    Logout
                 </a>
             @endif
 
@@ -176,35 +175,27 @@
     <div class="hidden w-full p-[5px]" id="navbar-hamburger">
         <ul class="flex flex-col font-medium mt-4 rounded-lg bg-[#6E8DC9] dark:border-gray-700">
             <li>
-                <a href="{{--{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}--}}"
+                <a href="/categoria/4/produtos"
                    class="block py-2 px-3 text-white bg-blue-700 rounded dark:bg-blue-600"
                    aria-current="page">Monitores</a>
             </li>
             <li>
-                <a href="{{--{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}--}}"
+                <a href="/categoria/3/produtos"
                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
                    dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Impressoras</a>
             </li>
             <li>
-                <a href="{{--{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}--}}"
+                <a href="/categoria/2/produtos"
                    class="block py-2 px-3 text-gray-900 rounded
                    hover:bg-gray-100 dark:text-gray-400 md:dark:hover:text-white
                    dark:hover:bg-gray-700 dark:hover:text-white">Desktops</a>
             </li>
             <li>
-                <a href="{{--{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}--}}"
+                <a href="/categoria/1/produtos"
                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
                    dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Laptops</a>
             </li>
 
-            {{--@foreach ($categorias['categorias'] as $categoria)
-                <li>
-                    <a href="{{ route('categories.search', ['id' => $categoria['categoria_id']]) }}"
-                       class="block py-2 px-3 text-gray-900 rounded
-                   hover:bg-gray-100 dark:text-gray-400 md:dark:hover:text-white
-                   dark:hover:bg-gray-700 dark:hover:text-white">{{$categoria['nome_categoria']}}</a>
-                </li>
-            @endforeach--}}
         </ul>
     </div>
 
@@ -218,7 +209,7 @@
 </main>
 
 <footer class="overflow-hidden w-full">
-    <div class="mx-auto w-full {{--max-w-screen-xl--}} p-4 py-6 lg:py-8">
+    <div class="mx-auto w-full p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0 md:w-1/2">
                 <a href="#" class="flex items-center">
@@ -236,7 +227,7 @@
                     <div>
                         <ul class="text-gray-500 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="https://flowbite.com/" class="hover:underline">Cybermarket</a>
+                                <a href="/" class="hover:underline">Cybermarket</a>
                             </li>
                         </ul>
                     </div>

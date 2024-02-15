@@ -14,16 +14,31 @@ class PedidoController extends Controller
      * Display a listing of the resource.
      */
 
-    public function resumoEncomenda()
+    public function resumoEncomenda($pedidoId, $nomeCliente)
     {
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>5
+        ]);
+        $cart = session('cart');
+        $totalPrice = session('total');
 
 
-        return view('pages.client.order-summary');
+        session()->forget('cart');
+
+        return view('pages.client.order-summary',
+            [
+                'cart' => $cart,
+                'totalPrice' => $totalPrice,
+                'pedido_id' => $pedidoId,
+                'nome_cliente' => $nomeCliente
+            ]);
     }
 
     public function checkout()
     {
-        /* dd(session('cart'));*/
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>3
+        ]);
         $user = Auth::user();
         $userId = $user->id;
         $cliente = Cliente::where('user_id', $userId)->first();
@@ -38,32 +53,16 @@ class PedidoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
 
     public function processCheckout(Request $request)
     {
-        /*$request->validate([
-            'formData.nome_cliente' => 'required',
-            'formData.email' => 'required|email',
-            'formData.morada' => 'required',
-            'formData.nif' => 'required|numeric',
-            'formData.telemovel' => 'required|numeric',
-            'cartData' => 'required|array|min:1',
-            'payment_method' => 'required',
-        ]);*/
 
         $formData = $request->all();
         $cartData = session('cart');
         $total = session('total');
+        $nomeCliente = $formData['nome_cliente'];
 
 
         $dataToSend = [
@@ -76,45 +75,14 @@ class PedidoController extends Controller
 
         $response = Http::post('http://127.0.0.1:8000/api/checkout', $dataToSend);
 
-        if ($response->successful()) {
-            session()->put('cart', []);
+        $pedidoId = $response->json();
 
-            return redirect()->route('home');
+
+        if ($response->successful()) {
+
+            return $this->resumoEncomenda($pedidoId, $nomeCliente);
         } else {
             return back()->withInput()->with('error', 'Erro ao processar o pedido.');
         }
-    }
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

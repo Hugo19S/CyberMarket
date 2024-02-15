@@ -22,19 +22,25 @@
                 </thead>
 
                 <tbody>
-                @foreach ($orders['results'] as $orders)
+                @foreach ($orders['results'] as $order)
                     <tr class="row_order_table">
-                        <td class="destaque" data-title="ID do pedido"><a href="/secret/management/order/{{$orders['pedido_id']}}">#{{$orders['pedido_id']}}</a></td>
-                        <td class="geral" data-title="Data">{{ date('Y-m-d', strtotime($orders['data_pedido'])) }}</td>
-                        <td class="geral" data-title="Proprietário">{{$orders['cliente']['nome_cliente']}}</td>
+                        <td class="destaque" data-title="ID do pedido"><a
+                                href="/secret/management/order/{{$order['pedido_id']}}">#{{$order['pedido_id']}}</a>
+                        </td>
+                        <td class="geral" data-title="Data">{{ date('Y-m-d', strtotime($order['data_pedido'])) }}</td>
+                        <td class="geral" data-title="Proprietário">{{$order['cliente']['nome_cliente']}}</td>
                         <td data-title="Status">
-                            <div  class="status">
-                                <p>{{$orders['status']}}</p>
+                            <div class="status">
+                                <p>{{$order['status']}}</p>
                             </div>
                         </td>
-                        <td class="geral" data-title="Itens">{{count($orders['pedido_produto'])}}</td>
-                        <td class="geral" data-title="Pagamento">{{$orders['pagamento'][0]['tipo_pagamento']['nome_tipo_pagamento']}}</td>
-                        <td class="destaque" data-title="Total">{{$orders['preco_total']}}</td>
+                        <td class="geral" data-title="Itens">{{count($order['pedido_produto'])}}</td>
+                        <td class="geral" data-title="Pagamento"> @if (isset($order['pagamento'][0]))
+                                {{$order['pagamento'][0]['tipo_pagamento']['nome_tipo_pagamento']}}
+                            @else
+                                Sem pagamento
+                            @endif</td>
+                        <td class="destaque" data-title="Total">{{$order['preco_total']}}</td>
                     </tr>
                 @endforeach
                 </tbody>

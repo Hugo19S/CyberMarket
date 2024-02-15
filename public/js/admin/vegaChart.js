@@ -91,7 +91,6 @@ function drawChart() {
         }
     };
 
-    // Função para redimensionar a visualização com base no tamanho do contêiner
     function resize() {
         const width = container.clientWidth;
         const height = container.clientHeight;
@@ -102,10 +101,7 @@ function drawChart() {
         const chart = new google.visualization.VegaChart(container);
         chart.draw(dataTable, options);
     }
-
-    // Chama a função de redimensionamento inicialmente
     resize();
 
-    // Adiciona um ouvinte de redimensionamento da janela para ajustar a visualização quando o tamanho da tela mudar
     window.addEventListener('resize', resize);
 }

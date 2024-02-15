@@ -12,26 +12,34 @@ class AdminController extends Controller
 {
     function index()
     {
-        //dados usado pelo grafico
-        $dataVegaChart = [
-            ['A', 28],
-            ['B', 55],
-            ['C', 43],
-            ['D', 91],
-            ['E', 81],
-            ['F', 53],
-            ['G', 19],
-            ['H', 87]
-        ];
+        $dataAnalytics = Http::get('http://127.0.0.1:8000/api/data-analytics')->json();
 
-        $last5Added = Http::get('http://127.0.0.1:8000/api/added/last5/' .Auth::id())->json();
+        $count = 0;
+        foreach ($dataAnalytics['dataAnalytics'] as $dataAnalytic) {
+            if ($count < 10) {
+                $dataVegaChart[] = [$dataAnalytic['page_url'], $dataAnalytic['page_views']];
+                $count++;
+            }
+        }
+        $dataAnalytics = $dataVegaChart;
+
+        /*dd($dataAnalytics);*/
+
+        $last5Added = Http::get('http://127.0.0.1:8000/api/added/last5/' . Auth::id())->json();
         $last5Orders = Http::get('http://127.0.0.1:8000/api/orders/last5')->json();
 
-        return view('pages.admin.home.home',compact('dataVegaChart', 'last5Added', 'last5Orders'));
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>12
+        ]);
+
+        return view('pages.admin.home.home', compact('dataVegaChart', 'last5Added', 'last5Orders', 'dataAnalytics'));
     }
 
     function login(): View
     {
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>13
+        ]);
         return view('pages.admin.login.login');
     }
 
@@ -40,28 +48,33 @@ class AdminController extends Controller
     {
         $allCategory = Http::get('http://127.0.0.1:8000/api/categorias')->json();
         $allFabricante = Http::get('http://127.0.0.1:8000/api/fabricante')->json();
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>10
+        ]);
         return view('pages.admin.addProduct.add', compact('allCategory', 'allFabricante'));
     }
 
     function editProduct($id): View
     {
-        $product = Http::get('http://127.0.0.1:8000/api/produtos/' .$id)->json();
+        $product = Http::get('http://127.0.0.1:8000/api/produtos/' . $id)->json();
         $allCategory = Http::get('http://127.0.0.1:8000/api/categorias')->json();
         $allFabricante = Http::get('http://127.0.0.1:8000/api/fabricante')->json();
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>11
+        ]);
         return view('pages.admin.editProduct.edit', compact('product', 'allCategory', 'allFabricante', 'id'));
     }
 
     function store(Request $request)
     {
-        //image upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $requestImage = $request->image;
             $extension = $requestImage->extension();
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
             $requestImage->move(public_path('images/products'), $imageName);
-            $imagePath = '/images/products/' .$imageName;
+            $imagePath = '/images/products/' . $imageName;
 
-            $response = Http::post('http://127.0.0.1:8000/api/addProduct', [
+            Http::post('http://127.0.0.1:8000/api/addProduct', [
                 'tipo_de_produto' => $request->input('tipo_de_produto'),
                 'fabricante' => $request->input('fabricante'),
                 'id' => Auth::id(),
@@ -75,7 +88,6 @@ class AdminController extends Controller
                 'image' => $imagePath
             ]);
 
-            //dd($response);
         }
 
         return redirect('/secret/management/products');
@@ -83,13 +95,12 @@ class AdminController extends Controller
 
     function saveChanges(Request $request, $id)
     {
-        //image upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $requestImage = $request->image;
             $extension = $requestImage->extension();
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
             $requestImage->move(public_path('images/products'), $imageName);
-            $imagePath = '/images/products/' .$imageName;
+            $imagePath = '/images/products/' . $imageName;
 
             Http::put('http://127.0.0.1:8000/api/changeProduct', [
                 'tipo_de_produto' => $request->input('tipo_de_produto'),
@@ -105,8 +116,7 @@ class AdminController extends Controller
                 'image' => $imagePath,
                 'id_product' => $id
             ]);
-        }
-        else{
+        } else {
             Http::put('http://127.0.0.1:8000/api/changeProduct', [
                 'tipo_de_produto' => $request->input('tipo_de_produto'),
                 'fabricante' => $request->input('fabricante'),
@@ -127,51 +137,67 @@ class AdminController extends Controller
 
     public function showProducts(): View
     {
-        $allAddedProduct = Http::get('http://127.0.0.1:8000/api/added/' .Auth::id())->json();
-        return view('pages.admin.managementProduct.products' ,compact('allAddedProduct'));
+        $allAddedProduct = Http::get('http://127.0.0.1:8000/api/added/' . Auth::id())->json();
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>18
+        ]);
+        return view('pages.admin.managementProduct.products', compact('allAddedProduct'));
     }
 
     public function showProductDetails($id): View
     {
-        $allAddedProduct = Http::get('http://127.0.0.1:8000/api/produtos/' .$id)->json();
+        $allAddedProduct = Http::get('http://127.0.0.1:8000/api/produtos/' . $id)->json();
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>17
+        ]);
         return view('pages.admin.managementProduct.detailsProduct', compact('allAddedProduct'));
     }
 
     function showOrder(): View
     {
         $orders = Http::get('http://127.0.0.1:8000/api/orders')->json();
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>16
+        ]);
         return view('pages.admin.managementOrder.order', compact('orders'));
     }
 
     function orderDetails($id): View
     {
-        $orders = Http::get('http://127.0.0.1:8000/api/order/' .$id)->json();
+        $orders = Http::get('http://127.0.0.1:8000/api/order/' . $id)->json();
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>15
+        ]);
         return view('pages.admin.managementOrder.details', compact('orders', 'id'));
     }
 
     function showAnalytics(): View
     {
-        //dados usado pelo grafico
-        $dataFromController = [
-            ['Task', 'Hours per Day'],
-            ['Work', 11],
-            ['Eat', 2],
-            ['Commute', 2],
-            ['Watch TV', 2],
-            ['Sleep', 7]
-        ];
+        $dataAnalytics = Http::get('http://127.0.0.1:8000/api/data-analytics')->json();
 
-        return view('pages.admin.managementAnalytics.analytics',compact('dataFromController'));
+        $dataFromController = [['Task', 'Hours per Day']];
+
+        foreach ($dataAnalytics['dataAnalytics'] as $dataAnalytic) {
+            $dataFromController[] = [$dataAnalytic['page_url'], $dataAnalytic['page_views']];
+        }
+
+        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+            'id'=>14
+        ]);
+
+        return view('pages.admin.managementAnalytics.analytics', compact('dataFromController', 'dataAnalytics'));
     }
 
-    public function deleteProduct($id){
-        Http::get('http://127.0.0.1:8000/api/produto/delete/' .$id);
+    public function deleteProduct($id)
+    {
+        Http::get('http://127.0.0.1:8000/api/produto/delete/' . $id);
         return redirect()->back();
     }
 
-    public function saveChangesOrder(Request $request){
+    public function saveChangesOrder(Request $request)
+    {
 
-        Http::put('http://127.0.0.1:8000/api/order/status',[
+        Http::put('http://127.0.0.1:8000/api/order/status', [
             'id' => $request['orderKey'],
             'status' => $request['status']
         ]);

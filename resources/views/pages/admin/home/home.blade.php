@@ -6,7 +6,6 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-        //variavel usado pelo arquivo js para criar os graficos
         let dataFromContr = {!! json_encode($dataVegaChart) !!};
     </script>
     <script type="text/javascript" src="/js/admin/vegaChart.js"></script>
@@ -51,9 +50,11 @@
                     <tbody class="tbody-orders">
                     @foreach ($last5Orders['results'] as $orders)
                         <tr class="row_order_table">
-                            <td class="destaque" data-title="ID do pedido"><a href="/secret/management/order/{{$orders['pedido_id']}}">#{{$orders['pedido_id']}}</a>
+                            <td class="destaque" data-title="ID do pedido"><a
+                                    href="/secret/management/order/{{$orders['pedido_id']}}">#{{$orders['pedido_id']}}</a>
                             </td>
-                            <td class="geral" data-title="Data">{{ date('Y-m-d', strtotime($orders['data_pedido'])) }}</td>
+                            <td class="geral"
+                                data-title="Data">{{ date('Y-m-d', strtotime($orders['data_pedido'])) }}</td>
                             <td class="geral" data-title="Proprietário">{{$orders['cliente']['nome_cliente']}}</td>
                             <td data-title="Status">
                                 <div class="status">
@@ -61,7 +62,8 @@
                                 </div>
                             </td>
                             <td class="geral" data-title="Itens">{{count($orders['pedido_produto'])}}</td>
-                            <td class="geral" data-title="Pagamento">{{$orders['pagamento'][0]['tipo_pagamento']['nome_tipo_pagamento']}}</td>
+                            <td class="geral"
+                                data-title="Pagamento">{{$orders['pagamento'][0]['tipo_pagamento']['nome_tipo_pagamento']}}</td>
                             <td class="destaque" data-title="Total">{{$orders['preco_total']}}</td>
                         </tr>
                     @endforeach
@@ -85,12 +87,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @for($i = 0; $i < 80; $i++)
+
+                        @foreach($dataAnalytics as $dataAnalytic)
                             <tr>
-                                <td>HomePage</td>
-                                <td>10</td>
+                                <td>{{$dataAnalytic[0]}}</td>
+                                <td>{{$dataAnalytic[1]}}</td>
                             </tr>
-                        @endfor
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -13,7 +13,6 @@ class TipoProdutoSeeder extends Seeder
      */
     public function run(): void
     {
-        // Para a categoria 'Desktops'
         TipoProduto::create([
             'categoria_id' => 2,
             'nome_tipo_produto' => 'Desktop de Alta Performance',

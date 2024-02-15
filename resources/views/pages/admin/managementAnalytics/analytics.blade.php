@@ -25,66 +25,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @for($i = 0; $i < 80; $i++)
+                            @foreach($dataAnalytics['dataAnalytics'] as $dataAnalytic)
                                 <tr>
-                                    <td>HomePage</td>
-                                    <td>10</td>
+                                    <td>{{$dataAnalytic['page_url']}}</td>
+                                    <td>{{$dataAnalytic['page_views']}}</td>
                                 </tr>
-                            @endfor
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div id="piechart" class="pie-chart"></div>
                 </div>
             </div>
-            {{--            <div>--}}
-            {{--                <h3>Visitados este mês</h3>--}}
-            {{--                <div class="analytics-group">--}}
-            {{--                    <div class="pie-info">--}}
-            {{--                        <table>--}}
-            {{--                            <thead>--}}
-            {{--                            <tr>--}}
-            {{--                                <th>Páginas</th>--}}
-            {{--                                <th>Visitas</th>--}}
-            {{--                            </tr>--}}
-            {{--                            </thead>--}}
-            {{--                            <tbody>--}}
-            {{--                            @for($i = 0; $i < 80; $i++)--}}
-            {{--                                <tr>--}}
-            {{--                                    <td>HomePage</td>--}}
-            {{--                                    <td>10</td>--}}
-            {{--                                </tr>--}}
-            {{--                            @endfor--}}
-            {{--                            </tbody>--}}
-            {{--                        </table>--}}
-            {{--                    </div>--}}
-            {{--                    <div id="piechart2" class="pie-chart"></div>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-            {{--            <div>--}}
-            {{--                <h3>Visitados este ano</h3>--}}
-            {{--                <div class="analytics-group">--}}
-            {{--                    <div class="pie-info">--}}
-            {{--                        <table>--}}
-            {{--                            <thead>--}}
-            {{--                            <tr>--}}
-            {{--                                <th>Páginas</th>--}}
-            {{--                                <th>Visitas</th>--}}
-            {{--                            </tr>--}}
-            {{--                            </thead>--}}
-            {{--                            <tbody>--}}
-            {{--                            @for($i = 0; $i < 80; $i++)--}}
-            {{--                                <tr>--}}
-            {{--                                    <td>HomePage</td>--}}
-            {{--                                    <td>10</td>--}}
-            {{--                                </tr>--}}
-            {{--                            @endfor--}}
-            {{--                            </tbody>--}}
-            {{--                        </table>--}}
-            {{--                    </div>--}}
-            {{--                    <div id="piechart3" class="pie-chart"></div>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
         </div>
     </div>
 @endsection

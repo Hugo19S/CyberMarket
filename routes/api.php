@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AnalyticsDataController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoriaController;
 use App\Http\Controllers\Api\ClienteController;
@@ -55,3 +56,6 @@ Route::get('/order/{id}', [PedidoController::class, 'show']);
 Route::put('/order/status', [PedidoController::class, 'updateStatus']);
 Route::get('/orders/last5', [PedidoController::class, 'returnLast5Orders']);
 
+
+Route::get('/data-analytics',[AnalyticsDataController::class,'index']);
+Route::post('/data-analytics/save',[AnalyticsDataController::class,'update']);
