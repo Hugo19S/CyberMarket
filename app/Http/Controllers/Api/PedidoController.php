@@ -102,14 +102,6 @@ class PedidoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function updateStatus(Request $request)
@@ -118,13 +110,5 @@ class PedidoController extends Controller
         $pedido->update([
             'status' => $request->status
         ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14-Fev-2024 às 13:42
--- Versão do servidor: 10.4.28-MariaDB
--- versão do PHP: 8.2.4
+-- Tempo de geração: 15-Fev-2024 às 03:43
+-- Versão do servidor: 10.4.32-MariaDB
+-- versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,44 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `managment_cybermarket`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `analytics`
+--
+
+CREATE TABLE `analytics` (
+  `analytics_data_id` bigint(20) UNSIGNED NOT NULL,
+  `page_url` varchar(255) NOT NULL,
+  `page_views` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `analytics`
+--
+
+INSERT INTO `analytics` (`analytics_data_id`, `page_url`, `page_views`, `created_at`, `updated_at`) VALUES
+(1, 'Home', 13, NULL, '2024-02-15 02:43:34'),
+(2, 'Carrinho', 2, NULL, '2024-02-15 02:28:49'),
+(3, 'Checkout', 1, NULL, '2024-02-15 02:28:52'),
+(4, 'Login', 3, NULL, '2024-02-15 02:28:05'),
+(5, 'Resumo encomenda', 1, NULL, '2024-02-15 02:29:04'),
+(6, 'Detalhes produto', 3, NULL, '2024-02-15 02:32:44'),
+(7, 'Pesquisa', 1, NULL, '2024-02-15 02:29:49'),
+(8, 'Registo', 1, NULL, '2024-02-15 02:27:59'),
+(9, 'Detalhes do user', 3, NULL, '2024-02-15 02:32:52'),
+(10, 'Adicionar produto', 1, NULL, '2024-02-15 02:27:05'),
+(11, 'Editar Produto', 1, NULL, '2024-02-15 02:27:14'),
+(12, 'Home Admin', 5, NULL, '2024-02-15 02:32:26'),
+(13, 'Login Admin', 2, NULL, '2024-02-15 02:43:38'),
+(14, 'Analise', 5, NULL, '2024-02-15 02:32:09'),
+(15, 'Detalhes do pedido', 2, NULL, '2024-02-15 02:32:21'),
+(16, 'Pedido Admin', 2, NULL, '2024-02-15 02:26:59'),
+(17, 'Detalhes Produto admin', 2, NULL, '2024-02-15 02:26:56'),
+(18, 'Produtos Admin', 2, NULL, '2024-02-15 02:27:03');
 
 -- --------------------------------------------------------
 
@@ -58,7 +96,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_000000_create_users_table', 1),
 (3, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (4, '2019_08_19_000000_create_failed_jobs_table', 1),
-(5, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(6, '2024_02_14_174239_create_analytics_data_table', 2),
+(7, '2024_02_14_190803_create_analytics_data_table', 3),
+(8, '2024_02_14_192055_create_analytics_data_table', 4),
+(9, '2024_02_14_192201_create_analytics_data_table', 5),
+(10, '2024_02_14_192612_create_analytics_data_table', 6),
+(11, '2024_02_14_193832_create_analytics_data_table', 7),
+(12, '2024_02_15_014524_create_analytics_data_table', 8);
 
 -- --------------------------------------------------------
 
@@ -276,7 +321,30 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (178, 'App\\Models\\User', 1, 'MyAuthApp', 'effb9c85dcd75f47806ab400e314bcd297cea7ec1ff7a9ff70a40ed3b0f2e05e', '[\"*\"]', NULL, NULL, '2024-02-14 10:43:27', '2024-02-14 10:43:27'),
 (179, 'App\\Models\\User', 1, 'MyAuthApp', 'f29cb7560ef0cfc15691c9ab8073f726d0877875727e3f588f6911bfe70090d8', '[\"*\"]', NULL, NULL, '2024-02-14 11:49:51', '2024-02-14 11:49:51'),
 (180, 'App\\Models\\User', 16, 'MyAuthApp', '6b0d7ec7a7584c33ae9ebfb935afb687dfcb5db5500f0a61f2daabc0df10e946', '[\"*\"]', NULL, NULL, '2024-02-14 11:50:10', '2024-02-14 11:50:10'),
-(181, 'App\\Models\\User', 1, 'MyAuthApp', 'fb61799d264ab0ba7047f246e7c011227c2749525e821b5ae94a8edd0fb009e6', '[\"*\"]', NULL, NULL, '2024-02-14 11:54:03', '2024-02-14 11:54:03');
+(181, 'App\\Models\\User', 1, 'MyAuthApp', 'fb61799d264ab0ba7047f246e7c011227c2749525e821b5ae94a8edd0fb009e6', '[\"*\"]', NULL, NULL, '2024-02-14 11:54:03', '2024-02-14 11:54:03'),
+(182, 'App\\Models\\User', 16, 'MyAuthApp', 'e7d38e6ad1143e071882a532a351cada5467bfb4f62141a958bb7ce1f94d46f0', '[\"*\"]', NULL, NULL, '2024-02-14 13:27:36', '2024-02-14 13:27:36'),
+(183, 'App\\Models\\User', 16, 'MyAuthApp', '4df500a422a0196ed30adfb469c7d93a785a800f6ca7ab1d1aec0c4b048952cb', '[\"*\"]', NULL, NULL, '2024-02-14 13:27:53', '2024-02-14 13:27:53'),
+(184, 'App\\Models\\User', 1, 'MyAuthApp', '4de5ab692fd79ccc107466612e16288a8a3bd237006a35db35d87c7f32d4a83e', '[\"*\"]', NULL, NULL, '2024-02-14 13:29:19', '2024-02-14 13:29:19'),
+(185, 'App\\Models\\User', 1, 'MyAuthApp', '19a18c715b93a5cbe15d43952538944341863922fe9254dc4b16fd692880e528', '[\"*\"]', NULL, NULL, '2024-02-14 13:29:45', '2024-02-14 13:29:45'),
+(186, 'App\\Models\\User', 16, 'MyAuthApp', '7d91874c069f7feead471aa0644df4ceeac510413611fdd21cc3d2fa8fa4331d', '[\"*\"]', NULL, NULL, '2024-02-14 14:51:05', '2024-02-14 14:51:05'),
+(187, 'App\\Models\\User', 16, 'MyAuthApp', '0e12c23eab322f2f982b4104644b12c3988a6d3bc17b726aa879dc7f5d9a65d8', '[\"*\"]', NULL, NULL, '2024-02-14 15:45:49', '2024-02-14 15:45:49'),
+(188, 'App\\Models\\User', 9, 'MyAuthApp', '43c5072be3bbb4d205a8494788c80cd975840f7ddabe7c9944f4a51809a5b2e0', '[\"*\"]', NULL, NULL, '2024-02-14 16:19:21', '2024-02-14 16:19:21'),
+(189, 'App\\Models\\User', 16, 'MyAuthApp', '888a141332803b921ebd3883f4b2932660677398b7b848bc8a1d340ef2065ce4', '[\"*\"]', NULL, NULL, '2024-02-14 16:19:43', '2024-02-14 16:19:43'),
+(190, 'App\\Models\\User', 16, 'MyAuthApp', '5e591be84008e277f63967975d1646d55756b1fdffcdb6b976b300053b6781ea', '[\"*\"]', NULL, NULL, '2024-02-14 16:21:09', '2024-02-14 16:21:09'),
+(191, 'App\\Models\\User', 16, 'MyAuthApp', '2a557feceb6c4588307bfc79962c2ff9591a10bb66d022028de9c276eeb9835c', '[\"*\"]', NULL, NULL, '2024-02-14 16:32:25', '2024-02-14 16:32:25'),
+(192, 'App\\Models\\User', 16, 'MyAuthApp', 'fcd38e156131b8f14c0f26c6b2413adf1a2427d7cfbb5e0e28889806b2b06644', '[\"*\"]', NULL, NULL, '2024-02-14 16:33:19', '2024-02-14 16:33:19'),
+(193, 'App\\Models\\User', 16, 'MyAuthApp', 'a452d33cf5972e00b03cdd6a521b9b0dfb49cee7976074f4e10b85598bbfe379', '[\"*\"]', NULL, NULL, '2024-02-14 16:33:37', '2024-02-14 16:33:37'),
+(194, 'App\\Models\\User', 16, 'MyAuthApp', '7c48fc70ffb923b8f91f8f981df052ff0841df1e8075a8285b6660dff7549214', '[\"*\"]', NULL, NULL, '2024-02-14 16:37:41', '2024-02-14 16:37:41'),
+(195, 'App\\Models\\User', 16, 'MyAuthApp', '2704cfdd48f241eb9fd6f5262b1e1df3f735c6125c64b9ea962fb95f00828ce8', '[\"*\"]', NULL, NULL, '2024-02-14 16:47:14', '2024-02-14 16:47:14'),
+(196, 'App\\Models\\User', 1, 'MyAuthApp', 'a791dbabb3227570a90c449fc23e0798ba9009231aa31a67dfe240bb0f419448', '[\"*\"]', NULL, NULL, '2024-02-14 19:56:31', '2024-02-14 19:56:31'),
+(197, 'App\\Models\\User', 9, 'MyAuthApp', 'a170860293343c5590782582738c14518667be566efe78947dd5fb86c477df54', '[\"*\"]', NULL, NULL, '2024-02-14 20:22:01', '2024-02-14 20:22:01'),
+(198, 'App\\Models\\User', 9, 'MyAuthApp', '0ed5a812aa5d842408a4d0b6ff881c745b296f5e821e2bb7e40240806f8ba7e0', '[\"*\"]', NULL, NULL, '2024-02-14 21:02:46', '2024-02-14 21:02:46'),
+(199, 'App\\Models\\User', 1, 'MyAuthApp', '52deca081d2839182c329888c63aa928f328686a16cf6b9febebe666b3c4d444', '[\"*\"]', NULL, NULL, '2024-02-14 22:16:14', '2024-02-14 22:16:14'),
+(200, 'App\\Models\\User', 16, 'MyAuthApp', 'cf2321e8e36a46dcda0475f3a0520dfdca3ec3e96fde7cf2b781e15cca10da28', '[\"*\"]', NULL, NULL, '2024-02-15 00:02:38', '2024-02-15 00:02:38'),
+(201, 'App\\Models\\User', 9, 'MyAuthApp', 'dba077f9a91cbf0117b64d8c2eb6b8f67b54a9056513f3bfd6f021829ef59746', '[\"*\"]', NULL, NULL, '2024-02-15 00:04:45', '2024-02-15 00:04:45'),
+(202, 'App\\Models\\User', 1, 'MyAuthApp', '7d59478c288ac8216819e36a0979e26da2fdae4abb5c3059d74031642f7997a0', '[\"*\"]', NULL, NULL, '2024-02-15 00:05:27', '2024-02-15 00:05:27'),
+(203, 'App\\Models\\User', 1, 'MyAuthApp', 'd69eb154b59f5d8bcd01bd3fa51c25507d7d51ba03691770181ca459545c6a05', '[\"*\"]', NULL, NULL, '2024-02-15 01:51:30', '2024-02-15 01:51:30'),
+(204, 'App\\Models\\User', 16, 'MyAuthApp', 'cc90eda4d1e04679b5271b8eab5fd711c1292b0e798443fb47041e96c4ebee74', '[\"*\"]', NULL, NULL, '2024-02-15 02:28:19', '2024-02-15 02:28:19');
 
 -- --------------------------------------------------------
 
@@ -343,6 +411,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 --
 
 --
+-- Índices para tabela `analytics`
+--
+ALTER TABLE `analytics`
+  ADD PRIMARY KEY (`analytics_data_id`);
+
+--
 -- Índices para tabela `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -388,6 +462,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de tabela `analytics`
+--
+ALTER TABLE `analytics`
+  MODIFY `analytics_data_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT de tabela `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -397,13 +477,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de tabela `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_utilizador`

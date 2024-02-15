@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/** Routes Client */
+/************************************** Routes Client *************************************/
+
 Route::get('/register', [ClienteController::class, 'register'])->name('register');
 Route::post('/register', [AccessController::class, 'register'])->name('registerSave');
 Route::get('/login', [ClienteController::class, 'login'])->name('login');
@@ -45,26 +46,35 @@ Route::middleware(['web', 'auth'])->group(function () {
 });
 
 
+/****************************** Routes Admin *************************************/
 
-/** Routes Admin */
+Route::middleware(['auth.admin'])->group(function () {
 
-Route::middleware(['auth.admin'])->group(function (){
-
-    Route::get('/secret/home', [AdminController::class, 'index']); /**Lgação parcialmente feito*/
-    Route::get('/secret/product/add', [AdminController::class, 'addProduct']); /**Lgação feito*/
+    Route::get('/secret/home', [AdminController::class, 'index']);
+    /**Lgação parcialmente feito*/
+    Route::get('/secret/product/add', [AdminController::class, 'addProduct']);
+    /**Lgação feito*/
     Route::get('/secret/product/edit/{id}', [AdminController::class, 'editProduct']);
-    Route::get('/secret/product/delete/{id}', [AdminController::class, 'deleteProduct']); /**Lgação feito*/
-    Route::post('/secret/product/addProduct/store', [AdminController::class, 'store']); /**Lgação feito*/
-    Route::put('/secret/product/addProduct/saveChanges/{id}', [AdminController::class, 'saveChanges']); /**Lgação feito*/
+    Route::get('/secret/product/delete/{id}', [AdminController::class, 'deleteProduct']);
+    /**Lgação feito*/
+    Route::post('/secret/product/addProduct/store', [AdminController::class, 'store']);
+    /**Lgação feito*/
+    Route::put('/secret/product/addProduct/saveChanges/{id}', [AdminController::class, 'saveChanges']);
+    /**Lgação feito*/
     Route::get('/secret/management/analytics', [AdminController::class, 'showAnalytics']);
-    Route::get('/secret/management/products', [AdminController::class, 'showProducts']); /**Lgação feito*/
-    Route::get('/secret/management/product/details/{id}', [AdminController::class, 'showProductDetails']);/**Lgação feito*/
+    Route::get('/secret/management/products', [AdminController::class, 'showProducts']);
+    /**Lgação feito*/
+    Route::get('/secret/management/product/details/{id}', [AdminController::class, 'showProductDetails']);
+    /**Lgação feito*/
     Route::get('/secret/management/order', [AdminController::class, 'showOrder']);
     Route::put('/secret/management/order/saveForm', [AdminController::class, 'saveChangesOrder']);
-    Route::get('/secret/management/order/{id}', [AdminController::class, 'orderDetails']); /**Falta fazer a responsividade!*/
-    Route::get('/secret/logout', [AccessController::class, 'logout'])->name('logout.admin'); /**Não é preciso fazer*/
+    Route::get('/secret/management/order/{id}', [AdminController::class, 'orderDetails']);
+    /**Falta fazer a responsividade!*/
+    Route::get('/secret/logout', [AccessController::class, 'logout'])->name('logout.admin');
+    /**Não é preciso fazer*/
 
 });
 
-Route::get('/secret/login', [AdminController::class, 'login'])->name('secret.login'); /**Não é preciso fazer*/
+Route::get('/secret/login', [AdminController::class, 'login'])->name('secret.login');
+/**Não é preciso fazer*/
 Route::post('/secret/login/verify', [AccessController::class, 'login'])->name('login.verify'); /**Não é preciso fazer*/
