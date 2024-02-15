@@ -93,7 +93,7 @@ function drawChart() {
 
     function resize() {
         const width = container.clientWidth;
-        const height = container.clientHeight;
+        const height = container.clientHeight - 40;
 
         options.vega.width = width;
         options.vega.height = height;

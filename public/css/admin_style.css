@@ -250,9 +250,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
 }
-
 
 .productDetails {
     height: 450px;
@@ -557,10 +555,10 @@ body {
 
 .analytics-group {
     box-sizing: border-box;
-    max-height: 60vh;
+    max-height: 100vh;
     display: flex;
-    flex-direction: row;
     gap: 15px;
+    flex-direction: column;
 }
 
 .pie-info {
@@ -584,6 +582,7 @@ body {
     box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.2), 5px 5px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     background: ghostwhite;
+    min-height: calc(50vh - (15px / 2));
 }
 
 
@@ -632,15 +631,6 @@ body {
     .table{
         background: unset;
         box-shadow: unset;
-    }
-
-    .analytics-group {
-        flex-direction: column;
-    }
-
-    .pie-chart,
-    .vega-chart{
-        min-height: calc(30vh - (15px / 2));
     }
 
     .table thead {

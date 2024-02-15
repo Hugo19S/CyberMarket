@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(TipoUtilizador::class, 'tipo_utilizador_id');
     }
+
+    public function isAdmin()
+    {
+        return $this->tipo_utilizador_id === 2;
+    }
 }
