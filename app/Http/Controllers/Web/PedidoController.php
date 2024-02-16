@@ -16,7 +16,7 @@ class PedidoController extends Controller
 
     public function resumoEncomenda($pedidoId, $nomeCliente)
     {
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>5
         ]);
         $cart = session('cart');
@@ -36,7 +36,7 @@ class PedidoController extends Controller
 
     public function checkout()
     {
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>3
         ]);
         $user = Auth::user();
@@ -73,7 +73,7 @@ class PedidoController extends Controller
         ];
 
 
-        $response = Http::post('http://127.0.0.1:8000/api/checkout', $dataToSend);
+        $response = Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/checkout', $dataToSend);
 
         $pedidoId = $response->json();
 

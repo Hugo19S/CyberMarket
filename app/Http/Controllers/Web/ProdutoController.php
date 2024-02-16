@@ -17,11 +17,11 @@ class ProdutoController extends Controller
     {
         $termoPesquisa = $request->input('q');
 
-        $response = Http::get('http://127.0.0.1:8000/api/produto/search?q=' . $termoPesquisa);
+        $response = Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/produto/search?q=' . $termoPesquisa);
 
         $resultados = $response->json()['resultados'];
 
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>7
         ]);
         return view('pages.client.product-list', ['resultados' => $resultados]);
@@ -29,7 +29,7 @@ class ProdutoController extends Controller
 
     public function productCart()
     {
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>2
         ]);
         return view('pages.client.cart');
@@ -37,7 +37,7 @@ class ProdutoController extends Controller
 
     public function addProductToCart($id)
     {
-        $product = Http::get('http://127.0.0.1:8000/api/produtos/' . $id);
+        $product = Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/produtos/' . $id);
 
         $cart = session()->get('cart', []);
 
@@ -88,7 +88,7 @@ class ProdutoController extends Controller
     {
         $produto = Http::get('http://127.0.0.1:8000/api/produtos/' . $id);
 
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>6
         ]);
         return view('pages.client.product-details', ['produto' => $produto]);

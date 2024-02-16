@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     function index()
     {
-        $dataAnalytics = Http::get('http://127.0.0.1:8000/api/data-analytics')->json();
+        $dataAnalytics = Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/data-analytics')->json();
 
         $count = 0;
         foreach ($dataAnalytics['dataAnalytics'] as $dataAnalytic) {
@@ -23,12 +23,12 @@ class AdminController extends Controller
         }
         $dataAnalytics = $dataVegaChart;
 
-        /*dd($dataAnalytics);*/
+        /*dd(session('token'));*/
 
-        $last5Added = Http::get('http://127.0.0.1:8000/api/added/last5/' . Auth::id())->json();
-        $last5Orders = Http::get('http://127.0.0.1:8000/api/orders/last5')->json();
+        $last5Added = Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/added/last5/' . Auth::id())->json();
+        $last5Orders = Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/orders/last5')->json();
 
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>12
         ]);
 
@@ -37,7 +37,7 @@ class AdminController extends Controller
 
     function login(): View
     {
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>13
         ]);
         return view('pages.admin.login.login');
@@ -48,7 +48,7 @@ class AdminController extends Controller
     {
         $allCategory = Http::get('http://127.0.0.1:8000/api/categorias')->json();
         $allFabricante = Http::get('http://127.0.0.1:8000/api/fabricante')->json();
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>10
         ]);
         return view('pages.admin.addProduct.add', compact('allCategory', 'allFabricante'));
@@ -59,7 +59,7 @@ class AdminController extends Controller
         $product = Http::get('http://127.0.0.1:8000/api/produtos/' . $id)->json();
         $allCategory = Http::get('http://127.0.0.1:8000/api/categorias')->json();
         $allFabricante = Http::get('http://127.0.0.1:8000/api/fabricante')->json();
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>11
         ]);
         return view('pages.admin.editProduct.edit', compact('product', 'allCategory', 'allFabricante', 'id'));
@@ -74,7 +74,7 @@ class AdminController extends Controller
             $requestImage->move(public_path('images/products'), $imageName);
             $imagePath = '/images/products/' . $imageName;
 
-            Http::post('http://127.0.0.1:8000/api/addProduct', [
+            Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/addProduct', [
                 'tipo_de_produto' => $request->input('tipo_de_produto'),
                 'fabricante' => $request->input('fabricante'),
                 'id' => Auth::id(),
@@ -102,7 +102,7 @@ class AdminController extends Controller
             $requestImage->move(public_path('images/products'), $imageName);
             $imagePath = '/images/products/' . $imageName;
 
-            Http::put('http://127.0.0.1:8000/api/changeProduct', [
+            Http::withToken(''.session('token'))->put('http://127.0.0.1:8000/api/changeProduct', [
                 'tipo_de_produto' => $request->input('tipo_de_produto'),
                 'fabricante' => $request->input('fabricante'),
                 'id' => Auth::id(),
@@ -117,7 +117,7 @@ class AdminController extends Controller
                 'id_product' => $id
             ]);
         } else {
-            Http::put('http://127.0.0.1:8000/api/changeProduct', [
+            Http::withToken(''.session('token'))->put('http://127.0.0.1:8000/api/changeProduct', [
                 'tipo_de_produto' => $request->input('tipo_de_produto'),
                 'fabricante' => $request->input('fabricante'),
                 'id' => Auth::id(),
@@ -137,8 +137,8 @@ class AdminController extends Controller
 
     public function showProducts(): View
     {
-        $allAddedProduct = Http::get('http://127.0.0.1:8000/api/added/' . Auth::id())->json();
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        $allAddedProduct = Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/added/' . Auth::id())->json();
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>18
         ]);
         return view('pages.admin.managementProduct.products', compact('allAddedProduct'));
@@ -147,7 +147,7 @@ class AdminController extends Controller
     public function showProductDetails($id): View
     {
         $allAddedProduct = Http::get('http://127.0.0.1:8000/api/produtos/' . $id)->json();
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>17
         ]);
         return view('pages.admin.managementProduct.detailsProduct', compact('allAddedProduct'));
@@ -155,8 +155,8 @@ class AdminController extends Controller
 
     function showOrder(): View
     {
-        $orders = Http::get('http://127.0.0.1:8000/api/orders')->json();
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        $orders = Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/orders')->json();
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>16
         ]);
         return view('pages.admin.managementOrder.order', compact('orders'));
@@ -164,8 +164,8 @@ class AdminController extends Controller
 
     function orderDetails($id): View
     {
-        $orders = Http::get('http://127.0.0.1:8000/api/order/' . $id)->json();
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        $orders = Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/order/' . $id)->json();
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>15
         ]);
         return view('pages.admin.managementOrder.details', compact('orders', 'id'));
@@ -173,7 +173,7 @@ class AdminController extends Controller
 
     function showAnalytics(): View
     {
-        $dataAnalytics = Http::get('http://127.0.0.1:8000/api/data-analytics')->json();
+        $dataAnalytics = Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/data-analytics')->json();
 
         $dataFromController = [['Task', 'Hours per Day']];
 
@@ -181,7 +181,7 @@ class AdminController extends Controller
             $dataFromController[] = [$dataAnalytic['page_url'], $dataAnalytic['page_views']];
         }
 
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>14
         ]);
 
@@ -190,14 +190,14 @@ class AdminController extends Controller
 
     public function deleteProduct($id)
     {
-        Http::get('http://127.0.0.1:8000/api/produto/delete/' . $id);
+        Http::withToken(''.session('token'))->get('http://127.0.0.1:8000/api/produto/delete/' . $id);
         return redirect()->back();
     }
 
     public function saveChangesOrder(Request $request)
     {
 
-        Http::put('http://127.0.0.1:8000/api/order/status', [
+        Http::withToken(''.session('token'))->put('http://127.0.0.1:8000/api/order/status', [
             'id' => $request['orderKey'],
             'status' => $request['status']
         ]);

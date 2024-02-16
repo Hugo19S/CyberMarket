@@ -12,7 +12,7 @@ class HomePageController extends Controller
     public function index()
     {
 
-       Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+       Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
            'id'=>1
        ]);
 

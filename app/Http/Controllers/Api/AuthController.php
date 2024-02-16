@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
@@ -17,8 +18,9 @@ class AuthController extends BaseController
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $authUser = Auth::user();
             $token = $authUser->createToken('MyAuthApp')->plainTextToken;
-
             $user = Cliente::where('user_id', '=', $authUser->id)->get();
+
+            Cache::put('api_token_', $token, 1440);
 
             return response()->json([
                 'token' => $token,

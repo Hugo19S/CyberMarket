@@ -31,7 +31,7 @@
                         <td class="geral" data-title="Proprietário">{{$order['cliente']['nome_cliente']}}</td>
                         <td data-title="Status">
                             <div class="status">
-                                <p>{{$order['status']}}</p>
+                                <p id="status-text">{{$order['status']}}</p>
                             </div>
                         </td>
                         <td class="geral" data-title="Itens">{{count($order['pedido_produto'])}}</td>
@@ -40,7 +40,7 @@
                             @else
                                 Sem pagamento
                             @endif</td>
-                        <td class="destaque" data-title="Total">{{$order['preco_total']}}</td>
+                        <td class="destaque" data-title="Total">{{$order['preco_total']}}€</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -48,5 +48,5 @@
 
         </div>
     </div>
-
+    <script src="/js/admin/statusColor.js"></script>
 @endsection

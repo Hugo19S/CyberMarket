@@ -27,33 +27,38 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('login', [AuthController::class, 'signin'])->name('api.login');
-Route::post('register', [AuthController::class, 'signup'])->name('api.register');
-Route::put('/cliente/{id}', [ClienteController::class, 'atualizarCliente']);
+
 Route::get('/categorias', [HomePageController::class, 'getCategorias']);
-Route::get('/produtos', [HomePageController::class, 'getProdutos']);
 Route::get('/produtos', [HomePageController::class, 'getProdutos']);
 Route::get('/produtos/{id}', [ProdutoController::class, 'show']);
 Route::get('/produto/search', [ProdutoController::class, 'search'])->name('api.produto.search');
 Route::get('/categoria/{categoriaId}/produtos', [CategoriaController::class, 'produtosPorCategoria'])
     ->name('categoria.produtos');
-Route::post('/checkout', [PedidoController::class, 'processCheckout']);
-
-/******************* Consulta do administrador *******************/
-
 Route::get('/fabricante', [HomePageController::class, 'getFabricante']);
 Route::get('/tipoproduto/{id}', [TipoProdutoController::class, 'productTypeByCategoryId']);
 Route::get('logout', [AuthController::class, 'logout'])->name('api.logout');
-Route::get('/added/{id}', [ProdutoController::class, 'allAddedProduct']);
-Route::get('/added/last5/{id}', [ProdutoController::class, 'returnLast5AddedProduct']);
-Route::post('/addProduct', [ProdutoController::class, 'store']);
-Route::put('/changeProduct', [ProdutoController::class, 'saveChanges']);
-Route::get('/produto/delete/{id}', [ProdutoController::class, 'destroy']);
-Route::get('/orders', [PedidoController::class, 'showAll']);
-Route::get('/order/{id}', [PedidoController::class, 'show']);
-Route::put('/order/status', [PedidoController::class, 'updateStatus']);
-Route::get('/orders/last5', [PedidoController::class, 'returnLast5Orders']);
 
 
-Route::get('/data-analytics', [AnalyticsDataController::class, 'index']);
-Route::post('/data-analytics/save', [AnalyticsDataController::class, 'update']);
+Route::middleware('auth.token')->group(function (){
+
+    Route::put('/cliente/{id}', [ClienteController::class, 'atualizarCliente']);   /*******Feito********/
+    Route::post('/checkout', [PedidoController::class, 'processCheckout']);   /*******Feito********/
+
+    /******************* Consulta do administrador *******************/
+
+    Route::get('/added/{id}', [ProdutoController::class, 'allAddedProduct']);   /*******Feito********/
+    Route::get('/added/last5/{id}', [ProdutoController::class, 'returnLast5AddedProduct']);   /*******Feito********/
+    Route::post('/addProduct', [ProdutoController::class, 'store']);   /*******Feito********/
+    Route::put('/changeProduct', [ProdutoController::class, 'saveChanges']);   /*******Feito********/
+    Route::get('/produto/delete/{id}', [ProdutoController::class, 'destroy']);   /*******Feito********/
+    Route::get('/orders', [PedidoController::class, 'showAll']);   /*******Feito********/
+    Route::get('/order/{id}', [PedidoController::class, 'show']);   /*******Feito********/
+    Route::put('/order/status', [PedidoController::class, 'updateStatus']);   /*******Feito********/
+    Route::get('/orders/last5', [PedidoController::class, 'returnLast5Orders']);   /*******Feito********/
+    Route::get('/data-analytics', [AnalyticsDataController::class, 'index']);   /*******Feito********/
+    Route::post('/data-analytics/save', [AnalyticsDataController::class, 'update']);
+});
+
+Route::post('login', [AuthController::class, 'signin'])->name('api.login');
+Route::post('register', [AuthController::class, 'signup'])->name('api.register');
+

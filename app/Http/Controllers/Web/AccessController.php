@@ -69,7 +69,6 @@ class AccessController extends Controller
             'name' => $request->input(['name']),
             'email' => $request->input(['email']),
             'password' => $request->input(['password']),
-            'confirm_password' => $request->input(['confirm_password']),
         ]);
         return redirect('/');
     }

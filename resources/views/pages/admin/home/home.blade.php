@@ -58,13 +58,13 @@
                             <td class="geral" data-title="Proprietário">{{$orders['cliente']['nome_cliente']}}</td>
                             <td data-title="Status">
                                 <div class="status">
-                                    <p>{{$orders['status']}}</p>
+                                    <p id="status-text">{{$orders['status']}}</p>
                                 </div>
                             </td>
                             <td class="geral" data-title="Itens">{{count($orders['pedido_produto'])}}</td>
                             <td class="geral"
                                 data-title="Pagamento">{{$orders['pagamento'][0]['tipo_pagamento']['nome_tipo_pagamento']}}</td>
-                            <td class="destaque" data-title="Total">{{$orders['preco_total']}}</td>
+                            <td class="destaque" data-title="Total">{{$orders['preco_total']}}€</td>
                         </tr>
                     @endforeach
                     <button id="nextOrder">></button>
@@ -103,4 +103,5 @@
     </div>
 
     <script src="/js/admin/carousel.js"></script>
+    <script src="/js/admin/statusColor.js"></script>
 @endsection

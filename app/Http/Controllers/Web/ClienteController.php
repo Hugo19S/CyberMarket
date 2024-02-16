@@ -16,7 +16,7 @@ class ClienteController extends Controller
 
     public function register()
     {
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>8
         ]);
         return view('pages.client.register');
@@ -24,7 +24,7 @@ class ClienteController extends Controller
 
     public function login()
     {
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>4
         ]);
         return view('pages.client.login');
@@ -37,7 +37,7 @@ class ClienteController extends Controller
 
         $cliente = Cliente::where('user_id', $userId)->first();
 
-        Http::post('http://127.0.0.1:8000/api/data-analytics/save',[
+        Http::withToken(''.session('token'))->post('http://127.0.0.1:8000/api/data-analytics/save',[
             'id'=>9
         ]);
         return view('pages.client.user-details', ['cliente' => $cliente]);
@@ -52,7 +52,7 @@ class ClienteController extends Controller
             'telemovel' => 'required',
         ]);
 
-        $response = Http::put('http://127.0.0.1:8000/api/cliente/' . $id, [
+        $response = Http::withToken(''.session('token'))->put('http://127.0.0.1:8000/api/cliente/' . $id, [
             'numero_contribuinte' => $request->input('numero_contribuinte'),
             'morada' => $request->input('morada'),
             'telemovel' => $request->input('telemovel'),
