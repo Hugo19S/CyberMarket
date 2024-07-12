@@ -801,16 +801,6 @@ body {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.invalidForm {
+    border: 1px solid red;
+}

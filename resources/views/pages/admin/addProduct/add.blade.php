@@ -7,7 +7,7 @@
     <div class="productRegister">
         <div id="register" class="col-md-6 offset-md-3">
             <h2>Adicionar produto</h2>
-            <form action="/secret/product/addProduct/store" method="POST" enctype="multipart/form-data">
+            <form id="productForm" action="/secret/product/addProduct/store" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="categoria">Categoria</label><br/>
@@ -72,4 +72,9 @@
         </div>
     </div>
     <script src="/js/admin/productTipe.js"></script>
+    <script>
+
+    </script>
+
+
 @endsection
